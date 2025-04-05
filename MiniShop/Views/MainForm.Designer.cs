@@ -153,7 +153,6 @@
             this.label3.Size = new System.Drawing.Size(112, 16);
             this.label3.TabIndex = 12;
             this.label3.Text = "Список товаров";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -172,7 +171,6 @@
             this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 14;
             this.label5.Text = "МАГАЗИН";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // MainForm
             // 

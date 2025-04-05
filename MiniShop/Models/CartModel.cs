@@ -47,6 +47,5 @@ namespace MiniShop.Models
             var item = _items.FirstOrDefault(i => i.Product.Id == productId);
             price -= item.Product.Price;
         }
-
     }
 }

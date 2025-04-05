@@ -84,15 +84,5 @@ namespace MiniShop.Views
         {
             labelTotalPrice.Text = $"Итого: {total}₽";
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
