@@ -20,7 +20,7 @@ namespace MiniShop.Views
             comboBoxSort.Items.AddRange(new string[]
             {
                 "Название",
-                "Цена",
+                "Ценаsfddsывf",
                 "Срок годности"
             });
 
