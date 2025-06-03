@@ -36,22 +36,13 @@ namespace MiniShop.Models
             _products.Add(product);
         }
 
-        public void Update(Product product)
+        public void Update(List<Product> newProducts)
         {
-            var existing = _products.FirstOrDefault(p => p.Id == product.Id);
-            if (existing != null)
-            {
-                existing.Name = product.Name;
-                existing.Price = product.Price;
-                existing.Quantity = product.Quantity;
-                existing.ExpiryDate = product.ExpiryDate;
-                existing.PhotoPath = product.PhotoPath;
-            }
+            _products = newProducts;
         }
 
-        public void Delete(int productId)
+        public void Delete(Product product)
         {
-            var product = _products.FirstOrDefault(p => p.Id == productId);
             if (product != null)
                 _products.Remove(product);
         }
@@ -60,6 +51,40 @@ namespace MiniShop.Models
         {
             var json = JsonSerializer.Serialize(_products, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
+        }
+
+        public string AddToCart(Product product)
+        {
+            if (product != null)
+            {
+                if (product.Quantity > 0)
+                {
+                    product.Quantity -= 1;
+                    return "Продукт добавлен в корзину!";
+                }
+                else if (product.Quantity == 0)
+                {
+                    return "Продукт закончился!";
+                }
+            }
+            return "Продукт не существует";
+        }
+
+        public string RemoveFromCart(Product product)
+        {
+            if (product != null)
+            {
+                if (product.Quantity > 0)
+                {
+                    product.Quantity += 1;
+                    return "Продукт удален из корзины!";
+                }
+                else if (product.Quantity == 0)
+                {
+                    return "Продукт вернулся на склад!";
+                }
+            }
+            return "Продукт не существует";
         }
     }
 }

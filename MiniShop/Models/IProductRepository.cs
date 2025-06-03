@@ -6,8 +6,8 @@ namespace MiniShop.Models
     {
         List<Product> GetAll();
         void Add(Product product);
-        void Update(Product product);
-        void Delete(int productId);
+        void Update(List<Product> newProducts);
+        void Delete(Product product);
         void Save();
     }
 }
