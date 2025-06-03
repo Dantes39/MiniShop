@@ -21,31 +21,29 @@ namespace MiniShop.Models
                 _items.Add(new CartItem { Product = product, Quantity = 1 });
         }
 
-        public void Remove(int productId)
+        public void Remove(CartItem cartItem)
         {
-            var item = _items.FirstOrDefault(i => i.Product.Id == productId);
-            if (item != null)
-                if (item.Quantity > 1)
+            if (cartItem != null)
+                if (cartItem.Quantity > 1)
                 {
-                    item.Quantity -= 1;
+                    cartItem.Quantity -= 1;
                 }
                 else
                 {
-                    _items.Remove(item);
+                    _items.Remove(cartItem);
                 }
         }
 
-        public void UpdateUpTotalPrice(int productId)
+        public void UpdateUpTotalPrice(Product product)
         {
-            var item = _items.FirstOrDefault(i => i.Product.Id == productId);
-            if ((item != null) && (item.Quantity < item.Product.Quantity))
-                price += item.Product.Price;
+            var cartItem = _items.FirstOrDefault(i => i.Product.Id == product.Id);
+            if ((cartItem != null) && (cartItem.Quantity < cartItem.Product.Quantity))
+                price += cartItem.Product.Price;
         }
 
-        public void UpdateDownTotalPrice(int productId)
+        public void UpdateDownTotalPrice(CartItem cartItem)
         {
-            var item = _items.FirstOrDefault(i => i.Product.Id == productId);
-            price -= item.Product.Price;
+            price -= cartItem.Product.Price;
         }
     }
 }

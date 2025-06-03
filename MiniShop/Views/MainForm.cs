@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using MiniShop.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
@@ -8,9 +9,9 @@ namespace MiniShop.Views
 {
     public partial class MainForm : Form, IMainView
     {
-        public event Action<int> OnAddToCartClicked;
+        public event Action<Product> OnAddToCartClicked;
         public event Action OnAddProductClicked;
-        public event Action<int> OnRemoveFromCartClicked;
+        public event Action<CartItem> OnRemoveFromCartClicked;
         public event Action<string> OnSearchChanged;
         public event Action<string> OnSortOptionChanged;
 
@@ -42,7 +43,7 @@ namespace MiniShop.Views
             {
                 if (listBoxProducts.SelectedItem is Product product)
                 {
-                    OnAddToCartClicked?.Invoke(product.Id);
+                    OnAddToCartClicked?.Invoke(product);
                 }
             };
             buttonAddProduct.Click += (s, e) => OnAddProductClicked?.Invoke();
@@ -50,7 +51,7 @@ namespace MiniShop.Views
             {
                 if (listBoxCart.SelectedItem is CartItem item)
                 {
-                    OnRemoveFromCartClicked?.Invoke(item.Product.Id);
+                    OnRemoveFromCartClicked?.Invoke(item);
                 }
             };
             textBoxSearch.TextChanged += (s, e) => OnSearchChanged?.Invoke(textBoxSearch.Text);
@@ -83,6 +84,23 @@ namespace MiniShop.Views
         public void UpdateTotalPrice(decimal total)
         {
             labelTotalPrice.Text = $"Итого: {total}₽";
+        }
+
+        public void DisplayNofication(string message)
+        {
+            List<string> listNofications = new List<string>() { "Продукт добавлен в корзину!" , "Продукт вернулся на склад!" };
+            List<string> listWarnings = new List<string>() { "Продукт закончился!" };
+            int flag = listNofications.Contains(message) ? 1 : listWarnings.Contains(message) ? 2 : 0;
+
+            if (flag == 1)
+            {
+                MessageBox.Show(message, "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (flag == 2)
+            {
+                MessageBox.Show(message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else { MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
     }
 }

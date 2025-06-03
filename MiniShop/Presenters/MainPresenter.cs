@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MiniShop.Models;
 using MiniShop.Views;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace MiniShop.Presenters
@@ -10,11 +11,11 @@ namespace MiniShop.Presenters
     public class MainPresenter
     {
         private readonly IMainView _view;
-        private readonly IProductRepository _productRepository;
+        private readonly ProductRepository _productRepository;
         private readonly CartModel _cartModel;
         private List<Product> _allProducts;
 
-        public MainPresenter(IMainView view, IProductRepository productRepository, CartModel cartModel)
+        public MainPresenter(IMainView view, ProductRepository productRepository, CartModel cartModel)
         {
             _view = view;
             _productRepository = productRepository;
@@ -42,19 +43,21 @@ namespace MiniShop.Presenters
             _view.DisplayCart(_cartModel.Items.ToList());;
         }
 
-        private void AddToCart(int productId)
+        private void AddToCart(Product product)
         {
-            var product = _allProducts.FirstOrDefault(p => p.Id == productId);
-            if (product != null)
+            string flagProductRep = _productRepository.AddToCart(product);
+            if (flagProductRep == "Продукт добавлен в корзину!")
             {
                 _cartModel.Add(product);
-                _view.DisplayCart(_cartModel.Items.ToList());;
+                _view.DisplayProducts(_allProducts);
+                _view.DisplayCart(_cartModel.Items.ToList());
             }
+            else _view.DisplayNofication(flagProductRep);
         }
 
-        private void RemoveFromCart(int productId)
+        private void RemoveFromCart(CartItem cartItem)
         {
-            _cartModel.Remove(productId);
+            _cartModel.Remove(cartItem);
             _view.DisplayCart(_cartModel.Items.ToList());;
         }
 
@@ -94,22 +97,20 @@ namespace MiniShop.Presenters
             _view.DisplayProducts(sorted);
         }
 
-        private void UpdateUpTotalPrice(int productId)
+        private void UpdateUpTotalPrice(Product product)
         {
-            var product = _allProducts.FirstOrDefault(p => p.Id == productId);
             if (product != null)
             {
-                _cartModel.UpdateUpTotalPrice(productId);
+                _cartModel.UpdateUpTotalPrice(product);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }
 
-        private void UpdateDownTotalPrice(int productId)
+        private void UpdateDownTotalPrice(CartItem cartItem)
         {
-            var product = _allProducts.FirstOrDefault(p => p.Id == productId);
-            if (product != null)
+            if (cartItem != null)
             {
-                _cartModel.UpdateDownTotalPrice(productId);
+                _cartModel.UpdateDownTotalPrice(cartItem);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }

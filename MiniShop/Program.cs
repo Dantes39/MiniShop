@@ -14,11 +14,11 @@ namespace MiniShop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = new MainForm();                     // View
-            var repository = new ProductRepository();          // Model
-            var cartModel = new CartModel();                   // Корзина
+            var mainForm = new MainForm();                     
+            var repository = new ProductRepository();          
+            var cartModel = new CartModel();                   
 
-            var presenter = new MainPresenter(mainForm, repository, cartModel); // Презентер
+            var presenter = new MainPresenter(mainForm, repository, cartModel); 
             Application.Run(mainForm);
         }
     }

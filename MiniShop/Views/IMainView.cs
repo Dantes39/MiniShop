@@ -7,14 +7,15 @@ namespace MiniShop.Views
 {
     public interface IMainView
     {
-        event Action<int> OnAddToCartClicked;
+        event Action<Product> OnAddToCartClicked;
         event Action OnAddProductClicked;
-        event Action<int> OnRemoveFromCartClicked;
+        event Action<CartItem> OnRemoveFromCartClicked;
         event Action<string> OnSearchChanged;
         event Action<string> OnSortOptionChanged;
         void DisplayProducts(List<Product> products);
         void DisplayCart(List<CartItem> cartItems);
         void DisplayProductPhoto(string photoPath);
         void UpdateTotalPrice(decimal total);
+        void DisplayNofication(string message);
     }
 }
