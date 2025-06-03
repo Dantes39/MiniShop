@@ -82,10 +82,14 @@
   <ItemGroup>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\IClient.cs" />
     <Compile Include="Models\IProductRepository.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Presenters\AddProductPresenter.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,7 +101,14 @@
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\IAddProductView.cs" />
+    <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IMainView.cs" />
+    <Compile Include="Views\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +126,9 @@
     </Compile>
     <EmbeddedResource Include="Views\AddProductForm.resx">
       <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows.Forms;
+using MiniShop.Models;
 
 namespace MiniShop.Models
 {
@@ -70,16 +71,17 @@ namespace MiniShop.Models
             return "Продукт не существует";
         }
 
-        public string RemoveFromCart(Product product)
+        public string RemoveFromCart(CartItem cartItem)
         {
-            if (product != null)
+            var product = _products.FirstOrDefault(i => i.Id == cartItem.Product.Id);
+            if (cartItem != null)
             {
-                if (product.Quantity > 0)
+                if (cartItem.Quantity > 0)
                 {
                     product.Quantity += 1;
                     return "Продукт удален из корзины!";
                 }
-                else if (product.Quantity == 0)
+                else if (cartItem.Quantity == 0)
                 {
                     return "Продукт вернулся на склад!";
                 }

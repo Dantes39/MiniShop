@@ -57,8 +57,14 @@ namespace MiniShop.Presenters
 
         private void RemoveFromCart(CartItem cartItem)
         {
-            _cartModel.Remove(cartItem);
-            _view.DisplayCart(_cartModel.Items.ToList());;
+            string flagProductRep = _productRepository.RemoveFromCart(cartItem);
+            if (flagProductRep == "Продукт удален из корзины!")
+            {
+                _cartModel.Remove(cartItem);
+                _view.DisplayProducts(_allProducts);
+                _view.DisplayCart(_cartModel.Items.ToList());
+            }
+            else _view.DisplayNofication(flagProductRep);
         }
 
         private void OpenAddProduct()

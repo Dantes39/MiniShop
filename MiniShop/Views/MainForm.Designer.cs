@@ -96,7 +96,7 @@
             // buttonRemoveFromCart
             // 
             this.buttonRemoveFromCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonRemoveFromCart.Location = new System.Drawing.Point(916, 501);
+            this.buttonRemoveFromCart.Location = new System.Drawing.Point(49, 592);
             this.buttonRemoveFromCart.Name = "buttonRemoveFromCart";
             this.buttonRemoveFromCart.Size = new System.Drawing.Size(205, 69);
             this.buttonRemoveFromCart.TabIndex = 5;
@@ -177,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1168, 604);
+            this.ClientSize = new System.Drawing.Size(1168, 702);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
