@@ -14,12 +14,18 @@ namespace MiniShop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = new MainForm();                     
-            var repository = new ProductRepository();          
-            var cartModel = new CartModel();                   
+            var dataModel = new DataModel();
+            LoginForm loginForm = new LoginForm(dataModel);
+            var repository = new ProductRepository();
+            var cartModel = new CartModel();
 
-            var presenter = new MainPresenter(mainForm, repository, cartModel); 
-            Application.Run(mainForm);
+            var mainForm = new MainForm(loginForm.IsAdmin, loginForm.LoggedInClient, dataModel);
+            var presenter = new MainPresenter(mainForm, repository, cartModel);
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(mainForm);
+            }
+           
         }
     }
 }

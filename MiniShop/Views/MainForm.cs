@@ -5,19 +5,32 @@ using System.Windows.Forms;
 using MiniShop.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
+
 namespace MiniShop.Views
 {
     public partial class MainForm : Form, IMainView
     {
+        private bool isAdmin;
+        private Client loggedInClient;
+        private DataModel dataModel;
         public event Action<Product> OnAddToCartClicked;
         public event Action OnAddProductClicked;
         public event Action<CartItem> OnRemoveFromCartClicked;
         public event Action<string> OnSearchChanged;
         public event Action<string> OnSortOptionChanged;
 
-        public MainForm()
+        public MainForm(bool isAdmin, Client loggedInClient, DataModel dataModel)
         {
+            this.isAdmin = isAdmin;
+            this.loggedInClient = loggedInClient;
+            this.dataModel = dataModel;
             InitializeComponent();
+
+            if (!isAdmin)
+            {
+                buttonAddProduct.Visible = false;
+            }
+
             comboBoxSort.Items.AddRange(new string[]
             {
                 "Название",
@@ -101,6 +114,12 @@ namespace MiniShop.Views
                 MessageBox.Show(message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else { MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            dataModel.SaveData();
         }
     }
 }
