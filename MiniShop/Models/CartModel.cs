@@ -16,7 +16,7 @@ namespace MiniShop.Models
             if ((item != null) && (item.Quantity > 0))
                 item.Quantity++;
             else
-                _items.Add(new CartItem { Product = product, Quantity = 1 });
+                _items.Add(new CartItem(product, 1));
         }
 
         public void Remove(CartItem cartItem)

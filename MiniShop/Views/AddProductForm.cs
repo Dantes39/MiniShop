@@ -14,6 +14,8 @@ namespace MiniShop.Views
         public int ProductQuantity => (int)numericUpDownQuantity.Value;
         public DateTime ProductExpiration => dateTimePickerExpiration.Value;
         public string ProductPhotoPath => selectedImagePath;
+        public bool IsWeighable => checkBoxWeighable.Checked;
+        public int[] Weight => new int[2] { (int)numericUpDownMinWeight.Value, (int)numericUpDownMaxWeight.Value };
 
         public AddProductForm()
         {

@@ -6,5 +6,11 @@
         public int Quantity { get; set; }
 
         public string DisplayInfo => $"{Product.Name} — {Product.Price}₽ × {Quantity}";
+
+        public CartItem(Product product, int quantity) 
+        {
+            Product = product;
+            Quantity = quantity;
+        }
     }
 }

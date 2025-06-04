@@ -40,9 +40,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxWeighable = new System.Windows.Forms.CheckBox();
+            this.numericUpDownMinWeight = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMaxWeight = new System.Windows.Forms.NumericUpDown();
+            this.labelMinWeight = new System.Windows.Forms.Label();
+            this.labelMaxWeight = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxWeight)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxName
@@ -76,7 +83,7 @@
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonSave.Location = new System.Drawing.Point(15, 224);
+            this.buttonSave.Location = new System.Drawing.Point(15, 284);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(206, 62);
             this.buttonSave.TabIndex = 4;
@@ -95,7 +102,7 @@
             // buttonUploadPhoto
             // 
             this.buttonUploadPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonUploadPhoto.Location = new System.Drawing.Point(253, 224);
+            this.buttonUploadPhoto.Location = new System.Drawing.Point(253, 284);
             this.buttonUploadPhoto.Name = "buttonUploadPhoto";
             this.buttonUploadPhoto.Size = new System.Drawing.Size(300, 62);
             this.buttonUploadPhoto.TabIndex = 6;
@@ -147,12 +154,59 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Фото";
             // 
+            // checkBoxWeighable
+            // 
+            this.checkBoxWeighable.AutoSize = true;
+            this.checkBoxWeighable.Location = new System.Drawing.Point(15, 241);
+            this.checkBoxWeighable.Name = "checkBoxWeighable";
+            this.checkBoxWeighable.Size = new System.Drawing.Size(204, 20);
+            this.checkBoxWeighable.TabIndex = 13;
+            this.checkBoxWeighable.Text = "Необходиость взвешивать";
+            this.checkBoxWeighable.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownMinWeight
+            // 
+            this.numericUpDownMinWeight.Location = new System.Drawing.Point(253, 241);
+            this.numericUpDownMinWeight.Name = "numericUpDownMinWeight";
+            this.numericUpDownMinWeight.Size = new System.Drawing.Size(122, 22);
+            this.numericUpDownMinWeight.TabIndex = 14;
+            // 
+            // numericUpDownMaxWeight
+            // 
+            this.numericUpDownMaxWeight.Location = new System.Drawing.Point(426, 241);
+            this.numericUpDownMaxWeight.Name = "numericUpDownMaxWeight";
+            this.numericUpDownMaxWeight.Size = new System.Drawing.Size(123, 22);
+            this.numericUpDownMaxWeight.TabIndex = 15;
+            // 
+            // labelMinWeight
+            // 
+            this.labelMinWeight.AutoSize = true;
+            this.labelMinWeight.Location = new System.Drawing.Point(253, 219);
+            this.labelMinWeight.Name = "labelMinWeight";
+            this.labelMinWeight.Size = new System.Drawing.Size(122, 16);
+            this.labelMinWeight.TabIndex = 16;
+            this.labelMinWeight.Text = "MIN вес продукта";
+            // 
+            // labelMaxWeight
+            // 
+            this.labelMaxWeight.AutoSize = true;
+            this.labelMaxWeight.Location = new System.Drawing.Point(423, 219);
+            this.labelMaxWeight.Name = "labelMaxWeight";
+            this.labelMaxWeight.Size = new System.Drawing.Size(126, 16);
+            this.labelMaxWeight.TabIndex = 17;
+            this.labelMaxWeight.Text = "MAX вес продукта";
+            // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(565, 303);
+            this.ClientSize = new System.Drawing.Size(565, 388);
+            this.Controls.Add(this.labelMaxWeight);
+            this.Controls.Add(this.labelMinWeight);
+            this.Controls.Add(this.numericUpDownMaxWeight);
+            this.Controls.Add(this.numericUpDownMinWeight);
+            this.Controls.Add(this.checkBoxWeighable);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -170,6 +224,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxWeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +245,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBoxWeighable;
+        private System.Windows.Forms.NumericUpDown numericUpDownMinWeight;
+        private System.Windows.Forms.NumericUpDown numericUpDownMaxWeight;
+        private System.Windows.Forms.Label labelMinWeight;
+        private System.Windows.Forms.Label labelMaxWeight;
     }
 }
