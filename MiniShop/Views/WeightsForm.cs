@@ -16,6 +16,7 @@ namespace MiniShop.Views
     {
         public int WeightsQuantity => (int)numericUpDownQuantityProduct.Value;
         public event Action<Product, int> OnButtonMakeWeightClicked;
+        public event Action<Product, int> OnbuttonPutOutProductClicked;
         private Product SelectedProduct;
         public WeightsForm(Product product)
         {
@@ -45,6 +46,11 @@ namespace MiniShop.Views
             buttonMakeWeight.Click += (s, e) =>
             {
                 OnButtonMakeWeightClicked?.Invoke(this.SelectedProduct, this.WeightsQuantity);
+            };
+
+            buttonPutOutProduct.Click += (s, e) =>
+            {
+                OnbuttonPutOutProductClicked?.Invoke(this.SelectedProduct, this.WeightsQuantity);
             };
         }
 

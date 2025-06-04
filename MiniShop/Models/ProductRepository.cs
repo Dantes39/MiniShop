@@ -12,6 +12,7 @@ namespace MiniShop.Models
     {
         private readonly string _productsFilePath;
         private List<Product> _products;
+        private List<int> productsWeights = new List<int>();
         private int totalWeight = 0;
         public int totalWeightAmount = 0;
 
@@ -105,16 +106,35 @@ namespace MiniShop.Models
             for (int i = 0; i < weightsQuantity; i++)
             {
                 int realProductWeight = random.Next(product.Weight[0], product.Weight[1]);
+                productsWeights.Add(realProductWeight);
                 totalWeight += realProductWeight;
             }
+            MessageBox.Show(String.Join(", ", productsWeights));
             totalWeightAmount += weightsQuantity;
             return totalWeight;
         }
 
         public float CountWeightsPrice(Product product, int totalWeight)
         {
-            float totalPrice = product.Price * (totalWeight / 1000);
+            float totalPrice = product.Price * ((float)totalWeight / 1000);
             return totalPrice;
+        }
+
+        public int PutOutFromWeights(Product product, int weightsQuantity)
+        {
+            if (totalWeightAmount >= weightsQuantity)
+            {
+                int lenWeights = productsWeights.Count();
+                for (int i = 1; i <= weightsQuantity; i++)
+                {
+                    int weightNow = productsWeights[lenWeights - i];
+                    totalWeight -= weightNow;
+                    totalWeightAmount--;
+                    productsWeights.RemoveAt(lenWeights - i);
+                }
+                return totalWeight;
+            }
+            else return -1;
         }
     }
 }
