@@ -10,19 +10,22 @@ namespace MiniShop.Models
         public float price = 0;
         public IReadOnlyList<CartItem> Items => _items;
 
-        public void Add(Product product, int quantity)
+        public void Add(Product product, int quantity, bool isWeighable = false, int weight = 0)
         {
             var item = _items.FirstOrDefault(i => i.Product.Id == product.Id);
             if ((item != null) && (item.Quantity >= quantity))
+            {
                 item.Quantity += quantity;
+                item.Weight += weight;
+            }
             else
-                _items.Add(new CartItem(product, quantity, false, 0));
+                _items.Add(new CartItem(product, quantity, isWeighable, weight));
         }
 
         public void Remove(CartItem cartItem, int quantity)
         {
             if (cartItem != null)
-                if (cartItem.Quantity >= quantity)
+                if (cartItem.Quantity >= quantity && !cartItem.IsWeighable)
                 {
                     cartItem.Quantity -= quantity;
                 }

@@ -13,7 +13,7 @@ namespace MiniShop.Models
         private readonly string _productsFilePath;
         private List<Product> _products;
         private List<int> productsWeights = new List<int>();
-        private int totalWeight = 0;
+        public int totalWeight = 0;
         public int totalWeightAmount = 0;
 
         public ProductRepository()
@@ -86,9 +86,14 @@ namespace MiniShop.Models
             var product = _products.FirstOrDefault(i => i.Id == cartItem.Product.Id);
             if (cartItem != null)
             {
-                if (cartItem.Quantity >= quantity)
+                if ((cartItem.Quantity >= quantity) && !cartItem.IsWeighable)
                 {
                     product.Quantity += quantity;
+                    return "Продукт удален из корзины!";
+                }
+                else if (cartItem.IsWeighable)
+                {
+                    product.Quantity += cartItem.Quantity;
                     return "Продукт удален из корзины!";
                 }
                 else if (cartItem.Quantity == 0)
@@ -109,7 +114,6 @@ namespace MiniShop.Models
                 productsWeights.Add(realProductWeight);
                 totalWeight += realProductWeight;
             }
-            MessageBox.Show(String.Join(", ", productsWeights));
             totalWeightAmount += weightsQuantity;
             return totalWeight;
         }
@@ -135,6 +139,13 @@ namespace MiniShop.Models
                 return totalWeight;
             }
             else return -1;
+        }
+
+        public void CleanWeigths()
+        {
+            productsWeights = new List<int>();
+            totalWeight = 0;
+            totalWeightAmount = 0;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,8 @@ namespace MiniShop.Views
     {
         public int WeightsQuantity => (int)numericUpDownQuantityProduct.Value;
         public event Action<Product, int> OnButtonMakeWeightClicked;
-        public event Action<Product, int> OnbuttonPutOutProductClicked;
+        public event Action<Product, int> OnButtonPutOutProductClicked;
+        public event Action<Product> OnButtonAddToCartClicked;
         private Product SelectedProduct;
         public WeightsForm(Product product)
         {
@@ -50,7 +52,12 @@ namespace MiniShop.Views
 
             buttonPutOutProduct.Click += (s, e) =>
             {
-                OnbuttonPutOutProductClicked?.Invoke(this.SelectedProduct, this.WeightsQuantity);
+                OnButtonPutOutProductClicked?.Invoke(this.SelectedProduct, this.WeightsQuantity);
+            };
+
+            buttonAddToCart.Click += (s, e) =>
+            {
+                OnButtonAddToCartClicked?.Invoke(this.SelectedProduct);
             };
         }
 

@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartItemWeighable.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DataModel.cs" />

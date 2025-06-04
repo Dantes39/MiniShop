@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using MiniShop.Models;
 using MiniShop.Views;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
@@ -134,7 +135,14 @@ namespace MiniShop.Presenters
         {
             var weightsForm = new Views.WeightsForm(product);
             var weightsPresenter = new WeightsPresenter(weightsForm, _productRepository, _cartModel);
-            weightsForm.ShowDialog();
+            DialogResult result = weightsForm.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                _view.DisplayProducts(_allProducts);
+                _view.DisplayCart(_cartModel.Items.ToList());
+                _productRepository.CleanWeigths();
+            }
         }
     }
 }

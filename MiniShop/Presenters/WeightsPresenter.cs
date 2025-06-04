@@ -22,7 +22,8 @@ namespace MiniShop.Presenters
             _productRepository = productRepository;
             _cartModel = cartModel;
             _view.OnButtonMakeWeightClicked += PutInWeight;
-            _view.OnbuttonPutOutProductClicked += PutOutWeight;
+            _view.OnButtonPutOutProductClicked += PutOutWeight;
+            _view.OnButtonAddToCartClicked += WeightsToCart;
         }
         public void PutInWeight(Product product, int quantity)
         {
@@ -52,5 +53,18 @@ namespace MiniShop.Presenters
             }
         }
         
+        public void WeightsToCart(Product product)
+        {
+            int totalWeight = _productRepository.totalWeight;
+            int totalWeightAmount = _productRepository.totalWeightAmount;
+
+            string flagProductRep = _productRepository.AddToCart(product, totalWeightAmount);
+            
+            if (flagProductRep == "Продукт добавлен в корзину!")
+            {
+                _cartModel.Add(product, totalWeightAmount, true, totalWeight);
+                _view.Close();
+            }
+        }
     }
 }

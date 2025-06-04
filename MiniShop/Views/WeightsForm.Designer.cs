@@ -103,7 +103,7 @@
             // 
             // buttonAddToCart
             // 
-            this.buttonAddToCart.Location = new System.Drawing.Point(499, 365);
+            this.buttonAddToCart.Location = new System.Drawing.Point(499, 382);
             this.buttonAddToCart.Name = "buttonAddToCart";
             this.buttonAddToCart.Size = new System.Drawing.Size(133, 23);
             this.buttonAddToCart.TabIndex = 10;
