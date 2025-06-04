@@ -38,6 +38,24 @@ namespace MiniShop.Views
                 }
             };
             buttonSave.Click += (s, e) => OnSaveProductClicked?.Invoke();
+
+            checkBoxWeighable.Click += (s, e) =>
+            {
+                if (checkBoxWeighable.Checked)
+                {
+                    numericUpDownMinWeight.Visible = true;
+                    numericUpDownMaxWeight.Visible = true;
+                    labelMinWeight.Visible = true;
+                    labelMaxWeight.Visible = true;
+                }
+                else
+                {
+                    numericUpDownMinWeight.Visible = false;
+                    numericUpDownMaxWeight.Visible = false;
+                    labelMinWeight.Visible = false;
+                    labelMaxWeight.Visible = false;
+                }
+            };
         }
 
         public void CloseView()

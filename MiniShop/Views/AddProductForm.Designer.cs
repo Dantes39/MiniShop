@@ -170,6 +170,7 @@
             this.numericUpDownMinWeight.Name = "numericUpDownMinWeight";
             this.numericUpDownMinWeight.Size = new System.Drawing.Size(122, 22);
             this.numericUpDownMinWeight.TabIndex = 14;
+            this.numericUpDownMinWeight.Visible = false;
             // 
             // numericUpDownMaxWeight
             // 
@@ -177,15 +178,17 @@
             this.numericUpDownMaxWeight.Name = "numericUpDownMaxWeight";
             this.numericUpDownMaxWeight.Size = new System.Drawing.Size(123, 22);
             this.numericUpDownMaxWeight.TabIndex = 15;
+            this.numericUpDownMaxWeight.Visible = false;
             // 
             // labelMinWeight
             // 
             this.labelMinWeight.AutoSize = true;
-            this.labelMinWeight.Location = new System.Drawing.Point(253, 219);
+            this.labelMinWeight.Location = new System.Drawing.Point(251, 219);
             this.labelMinWeight.Name = "labelMinWeight";
             this.labelMinWeight.Size = new System.Drawing.Size(122, 16);
             this.labelMinWeight.TabIndex = 16;
             this.labelMinWeight.Text = "MIN вес продукта";
+            this.labelMinWeight.Visible = false;
             // 
             // labelMaxWeight
             // 
@@ -195,6 +198,7 @@
             this.labelMaxWeight.Size = new System.Drawing.Size(126, 16);
             this.labelMaxWeight.TabIndex = 17;
             this.labelMaxWeight.Text = "MAX вес продукта";
+            this.labelMaxWeight.Visible = false;
             // 
             // AddProductForm
             // 
