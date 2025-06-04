@@ -12,6 +12,7 @@ namespace MiniShop.Models
     {
         private readonly string _productsFilePath;
         private List<Product> _products;
+        private int totalWeight = 0;
 
         public ProductRepository()
         {
@@ -57,14 +58,18 @@ namespace MiniShop.Models
             File.WriteAllText(_productsFilePath, json);
         }
 
-        public string AddToCart(Product product)
+        public string AddToCart(Product product, int quantity)
         {
             if (product != null)
             {
-                if (product.Quantity > 0)
+                if (product.Quantity >= quantity)
                 {
-                    product.Quantity -= 1;
+                    product.Quantity -= quantity;
                     return "Продукт добавлен в корзину!";
+                }
+                else if (product.Quantity < quantity)
+                {
+                    return $"В магазине {product.Name} остался в количестве {product.Quantity}!!!";
                 }
                 else if (product.Quantity == 0)
                 {
@@ -74,14 +79,14 @@ namespace MiniShop.Models
             return "Продукт не существует";
         }
 
-        public string RemoveFromCart(CartItem cartItem)
+        public string RemoveFromCart(CartItem cartItem, int quantity)
         {
             var product = _products.FirstOrDefault(i => i.Id == cartItem.Product.Id);
             if (cartItem != null)
             {
-                if (cartItem.Quantity > 0)
+                if (cartItem.Quantity >= quantity)
                 {
-                    product.Quantity += 1;
+                    product.Quantity += quantity;
                     return "Продукт удален из корзины!";
                 }
                 else if (cartItem.Quantity == 0)
@@ -90,6 +95,18 @@ namespace MiniShop.Models
                 }
             }
             return "Продукт не существует";
+        }
+
+        public int CountWeights(Product product, int weightsQuantity)
+        {
+            Random random = new Random();
+
+            for (int i = 0; i < weightsQuantity; i++)
+            {
+                int realProductWeight = random.Next(product.Weight[0], product.Weight[1]);
+                totalWeight += realProductWeight;
+            }
+            return totalWeight;
         }
     }
 }

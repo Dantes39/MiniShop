@@ -10,21 +10,21 @@ namespace MiniShop.Models
         public decimal price = 0;
         public IReadOnlyList<CartItem> Items => _items;
 
-        public void Add(Product product)
+        public void Add(Product product, int quantity)
         {
             var item = _items.FirstOrDefault(i => i.Product.Id == product.Id);
-            if ((item != null) && (item.Quantity > 0))
-                item.Quantity++;
+            if ((item != null) && (item.Quantity >= quantity))
+                item.Quantity += quantity;
             else
-                _items.Add(new CartItem(product, 1));
+                _items.Add(new CartItem(product, quantity));
         }
 
-        public void Remove(CartItem cartItem)
+        public void Remove(CartItem cartItem, int quantity)
         {
             if (cartItem != null)
-                if (cartItem.Quantity > 1)
+                if (cartItem.Quantity >= quantity)
                 {
-                    cartItem.Quantity -= 1;
+                    cartItem.Quantity -= quantity;
                 }
                 else
                 {

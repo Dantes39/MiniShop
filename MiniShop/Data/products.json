@@ -32,10 +32,10 @@
     "Name": "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430",
     "Price": 100,
     "Quantity": 100,
-    "IsWeighable": false,
+    "IsWeighable": true,
     "Weight": [
-      0,
-      0
+      120,
+      150
     ],
     "ExpiryDate": "2025-06-04T17:53:45.5487075+03:00",
     "PhotoPath": "",
