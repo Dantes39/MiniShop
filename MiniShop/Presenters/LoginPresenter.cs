@@ -56,7 +56,9 @@ namespace MiniShop.Presenters
                 dataModel.SaveData();
                 view.LoggedInClient = newClient;
                 view.IsAdmin = false;
-                view.ShowSuccess("Регистрация успешна! Вы вошли как клиент.");
+                view.ShowSuccess("Регистрация успешна! Вы вошли как клиент. \n" +
+                    $"Добро пожаловать {newClient.Name} {newClient.Surname}");
+                view.ShowSuccess("За успешную первую регистрацию дарим 100 бонусов!");
                 view.CloseForm(DialogResult.OK);
             }
             else

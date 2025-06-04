@@ -52,7 +52,7 @@ namespace MiniShop.Presenters
                 _view.DisplayProducts(_allProducts);
                 _view.DisplayCart(_cartModel.Items.ToList());
             }
-            else _view.DisplayNofication(flagProductRep);
+            else _view.ShowError(flagProductRep);
         }
 
         private void RemoveFromCart(CartItem cartItem)
@@ -64,7 +64,7 @@ namespace MiniShop.Presenters
                 _view.DisplayProducts(_allProducts);
                 _view.DisplayCart(_cartModel.Items.ToList());
             }
-            else _view.DisplayNofication(flagProductRep);
+            else _view.ShowError(flagProductRep);
         }
 
         private void OpenAddProduct()

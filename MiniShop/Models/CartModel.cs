@@ -13,10 +13,8 @@ namespace MiniShop.Models
         public void Add(Product product)
         {
             var item = _items.FirstOrDefault(i => i.Product.Id == product.Id);
-            if ((item != null) && (item.Quantity < product.Quantity))
+            if ((item != null) && (item.Quantity > 0))
                 item.Quantity++;
-            else if ((item != null) && (item.Quantity >= product.Quantity))
-                MessageBox.Show($"Выбрано максимальное количество товара {product.Name}");
             else
                 _items.Add(new CartItem { Product = product, Quantity = 1 });
         }
@@ -37,7 +35,7 @@ namespace MiniShop.Models
         public void UpdateUpTotalPrice(Product product)
         {
             var cartItem = _items.FirstOrDefault(i => i.Product.Id == product.Id);
-            if ((cartItem != null) && (cartItem.Quantity < cartItem.Product.Quantity))
+            if ((cartItem != null) && (cartItem.Quantity > 0))
                 price += cartItem.Product.Price;
         }
 

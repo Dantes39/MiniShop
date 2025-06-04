@@ -99,21 +99,14 @@ namespace MiniShop.Views
             labelTotalPrice.Text = $"Итого: {total}₽";
         }
 
-        public void DisplayNofication(string message)
+        public void ShowError(string message)
         {
-            List<string> listNofications = new List<string>() { "Продукт добавлен в корзину!" , "Продукт вернулся на склад!" };
-            List<string> listWarnings = new List<string>() { "Продукт закончился!" };
-            int flag = listNofications.Contains(message) ? 1 : listWarnings.Contains(message) ? 2 : 0;
+            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
-            if (flag == 1)
-            {
-                MessageBox.Show(message, "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (flag == 2)
-            {
-                MessageBox.Show(message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else { MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        public void ShowSuccess(string message)
+        {
+            MessageBox.Show(message, "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

@@ -39,7 +39,29 @@
     "Phone": "1234",
     "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
     "Password": "1234",
-    "BonusScore": 0,
+    "BonusScore": 100,
+    "CashAmount": 0,
+    "CardMoney": 0
+  },
+  {
+    "ID": 5,
+    "Name": "\u041C\u0430\u0439\u043A\u043B",
+    "Surname": "\u0421\u0430\u0442\u0430\u043D\u043E\u0432\u0438\u0447",
+    "Phone": "666",
+    "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+    "Password": "666",
+    "BonusScore": 100,
+    "CashAmount": 0,
+    "CardMoney": 0
+  },
+  {
+    "ID": 6,
+    "Name": "\u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440",
+    "Surname": "\u041F\u0438\u0442\u0435\u0440\u0441\u043A\u0438\u0439",
+    "Phone": "52",
+    "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+    "Password": "52",
+    "BonusScore": 100,
     "CashAmount": 0,
     "CardMoney": 0
   }
