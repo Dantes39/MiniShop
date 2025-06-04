@@ -47,5 +47,15 @@ namespace MiniShop.Models
             if ((cartItem != null && cartItem.Quantity >= quantity))
             price -= cartItem.Product.Price * quantity;
         }
+
+        public void UpdateUpTotalPriceWeighable(float weightPrice)
+        {
+            price += weightPrice;
+        }
+
+        public void UpdateDownTotalPriceWeighable(float weightPrice)
+        {
+            price -= weightPrice;
+        }
     }
 }

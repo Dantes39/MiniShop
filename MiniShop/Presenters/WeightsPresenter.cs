@@ -63,6 +63,8 @@ namespace MiniShop.Presenters
             if (flagProductRep == "Продукт добавлен в корзину!")
             {
                 _cartModel.Add(product, totalWeightAmount, true, totalWeight);
+                var totalPrice = _productRepository.CountWeightsPrice(product, totalWeight);
+                _cartModel.UpdateUpTotalPriceWeighable(totalPrice);
                 _view.Close();
             }
         }

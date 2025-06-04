@@ -115,7 +115,7 @@ namespace MiniShop.Presenters
 
         private void UpdateUpTotalPrice(Product product)
         {
-            if (product != null)
+            if (product != null && !product.IsWeighable)
             {
                 _cartModel.UpdateUpTotalPrice(product, 1);
                 _view.UpdateTotalPrice(_cartModel.price);
@@ -124,11 +124,17 @@ namespace MiniShop.Presenters
 
         private void UpdateDownTotalPrice(CartItem cartItem)
         {
-            if (cartItem != null)
+            if (cartItem != null && !cartItem.IsWeighable)
             {
                 _cartModel.UpdateDownTotalPrice(cartItem, 1);
-                _view.UpdateTotalPrice(_cartModel.price);
             }
+            else if (cartItem.IsWeighable)
+            {
+                var product = _productRepository.GetAll().FirstOrDefault(i => i.Id == cartItem.Product.Id);
+                var weightPrice = _productRepository.CountWeightsPrice(product, cartItem.Weight);
+                _cartModel.UpdateDownTotalPriceWeighable(weightPrice);
+            }
+            _view.UpdateTotalPrice(_cartModel.price);
         }
 
         private void OpenWeightsForm(Product product)
@@ -142,6 +148,7 @@ namespace MiniShop.Presenters
                 _view.DisplayProducts(_allProducts);
                 _view.DisplayCart(_cartModel.Items.ToList());
                 _productRepository.CleanWeigths();
+                _view.UpdateTotalPrice(_cartModel.price);
             }
         }
     }
