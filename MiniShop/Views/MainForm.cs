@@ -24,11 +24,13 @@ namespace MiniShop.Views
             this.isAdmin = isAdmin;
             this.loggedInClient = loggedInClient;
             this.dataModel = dataModel;
+
+
             InitializeComponent();
 
-            if (!isAdmin)
+            if (isAdmin)
             {
-                buttonAddProduct.Visible = false;
+                buttonAddProduct.Visible = true;
             }
 
             comboBoxSort.Items.AddRange(new string[]

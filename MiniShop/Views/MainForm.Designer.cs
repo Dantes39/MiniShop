@@ -92,6 +92,7 @@
             this.buttonAddProduct.TabIndex = 4;
             this.buttonAddProduct.Text = "Добавить Продукт";
             this.buttonAddProduct.UseVisualStyleBackColor = false;
+            this.buttonAddProduct.Visible = false;
             // 
             // buttonRemoveFromCart
             // 

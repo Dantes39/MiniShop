@@ -19,10 +19,11 @@ namespace MiniShop
             var repository = new ProductRepository();
             var cartModel = new CartModel();
 
-            var mainForm = new MainForm(loginForm.IsAdmin, loginForm.LoggedInClient, dataModel);
-            var presenter = new MainPresenter(mainForm, repository, cartModel);
+           
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
+                var mainForm = new MainForm(loginForm.IsAdmin, loginForm.LoggedInClient, dataModel);
+                var presenter = new MainPresenter(mainForm, repository, cartModel);
                 Application.Run(mainForm);
             }
            
