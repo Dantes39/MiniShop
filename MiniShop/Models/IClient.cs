@@ -14,5 +14,8 @@ namespace MiniShop.Models
         string Phone { get; set; }
         string Address { get; set; }
         string Password { get; set; }
+        float BonusScore { get; set; }
+        float CashAmount { get; set; }
+        float CardMoney { get; set; }
     }
 }

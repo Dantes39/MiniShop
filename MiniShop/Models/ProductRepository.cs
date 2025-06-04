@@ -10,14 +10,17 @@ namespace MiniShop.Models
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly string _filePath = "Data/products.json";
+        private readonly string _productsFilePath;
         private List<Product> _products;
 
         public ProductRepository()
         {
-            if (File.Exists(_filePath))
+            string basePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", ".."));
+            _productsFilePath = Path.Combine(basePath, "Data", "products.json");
+
+            if (File.Exists(_productsFilePath))
             {
-                var json = File.ReadAllText(_filePath);
+                var json = File.ReadAllText(_productsFilePath);
                 _products = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
             }
             else
@@ -51,7 +54,7 @@ namespace MiniShop.Models
         public void Save()
         {
             var json = JsonSerializer.Serialize(_products, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_filePath, json);
+            File.WriteAllText(_productsFilePath, json);
         }
 
         public string AddToCart(Product product)
