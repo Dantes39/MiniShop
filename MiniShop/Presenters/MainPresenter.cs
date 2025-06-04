@@ -116,7 +116,7 @@ namespace MiniShop.Presenters
         {
             if (product != null)
             {
-                _cartModel.UpdateUpTotalPrice(product);
+                _cartModel.UpdateUpTotalPrice(product, 1);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }
@@ -125,7 +125,7 @@ namespace MiniShop.Presenters
         {
             if (cartItem != null)
             {
-                _cartModel.UpdateDownTotalPrice(cartItem);
+                _cartModel.UpdateDownTotalPrice(cartItem, 1);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }

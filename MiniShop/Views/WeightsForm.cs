@@ -30,12 +30,32 @@ namespace MiniShop.Views
             labelWeight.Text = weight.ToString();
         }
 
+        public void ShowTotalAmount(int totalAmount)
+        {
+            labelTotalAmount.Text = totalAmount.ToString();
+        }
+
+        public void ShowTotalPrice(float totalPrice) 
+        {
+            labelPrice.Text = totalPrice.ToString();
+        }
+
         public void WireUpEvents()
         {
             buttonMakeWeight.Click += (s, e) =>
             {
                 OnButtonMakeWeightClicked?.Invoke(this.SelectedProduct, this.WeightsQuantity);
             };
+        }
+
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void ShowSuccess(string message)
+        {
+            MessageBox.Show(message, "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace MiniShop.Models
         private readonly string _productsFilePath;
         private List<Product> _products;
         private int totalWeight = 0;
+        public int totalWeightAmount = 0;
 
         public ProductRepository()
         {
@@ -100,13 +101,20 @@ namespace MiniShop.Models
         public int CountWeights(Product product, int weightsQuantity)
         {
             Random random = new Random();
-
+            if (totalWeightAmount > product.Quantity - weightsQuantity) return -1;
             for (int i = 0; i < weightsQuantity; i++)
             {
                 int realProductWeight = random.Next(product.Weight[0], product.Weight[1]);
                 totalWeight += realProductWeight;
             }
+            totalWeightAmount += weightsQuantity;
             return totalWeight;
+        }
+
+        public float CountWeightsPrice(Product product, int totalWeight)
+        {
+            float totalPrice = product.Price * (totalWeight / 1000);
+            return totalPrice;
         }
     }
 }

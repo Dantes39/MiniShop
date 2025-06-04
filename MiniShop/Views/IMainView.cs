@@ -16,7 +16,7 @@ namespace MiniShop.Views
         void DisplayProducts(List<Product> products);
         void DisplayCart(List<CartItem> cartItems);
         void DisplayProductPhoto(string photoPath);
-        void UpdateTotalPrice(decimal total);
+        void UpdateTotalPrice(float total);
         void ShowError(string message);
         void ShowSuccess(string message);
     }

@@ -32,9 +32,11 @@
             this.labelWeight = new System.Windows.Forms.Label();
             this.labelProduct = new System.Windows.Forms.Label();
             this.labelPrice = new System.Windows.Forms.Label();
-            this.buttonPutOutProduct = new System.Windows.Forms.Button();
             this.buttonMakeWeight = new System.Windows.Forms.Button();
             this.numericUpDownQuantityProduct = new System.Windows.Forms.NumericUpDown();
+            this.buttonPutOutProduct = new System.Windows.Forms.Button();
+            this.buttonAddToCart = new System.Windows.Forms.Button();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantityProduct)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,15 +76,6 @@
             this.labelPrice.TabIndex = 4;
             this.labelPrice.Text = "labelPrice";
             // 
-            // buttonPutOutProduct
-            // 
-            this.buttonPutOutProduct.Location = new System.Drawing.Point(549, 345);
-            this.buttonPutOutProduct.Name = "buttonPutOutProduct";
-            this.buttonPutOutProduct.Size = new System.Drawing.Size(75, 23);
-            this.buttonPutOutProduct.TabIndex = 7;
-            this.buttonPutOutProduct.Text = "buttonPutOutProduct";
-            this.buttonPutOutProduct.UseVisualStyleBackColor = true;
-            // 
             // buttonMakeWeight
             // 
             this.buttonMakeWeight.Location = new System.Drawing.Point(287, 382);
@@ -94,16 +87,45 @@
             // 
             // numericUpDownQuantityProduct
             // 
-            this.numericUpDownQuantityProduct.Location = new System.Drawing.Point(519, 276);
+            this.numericUpDownQuantityProduct.Location = new System.Drawing.Point(543, 201);
             this.numericUpDownQuantityProduct.Name = "numericUpDownQuantityProduct";
             this.numericUpDownQuantityProduct.Size = new System.Drawing.Size(120, 22);
             this.numericUpDownQuantityProduct.TabIndex = 9;
+            // 
+            // buttonPutOutProduct
+            // 
+            this.buttonPutOutProduct.Location = new System.Drawing.Point(543, 241);
+            this.buttonPutOutProduct.Name = "buttonPutOutProduct";
+            this.buttonPutOutProduct.Size = new System.Drawing.Size(75, 23);
+            this.buttonPutOutProduct.TabIndex = 7;
+            this.buttonPutOutProduct.Text = "buttonPutOutProduct";
+            this.buttonPutOutProduct.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddToCart
+            // 
+            this.buttonAddToCart.Location = new System.Drawing.Point(499, 365);
+            this.buttonAddToCart.Name = "buttonAddToCart";
+            this.buttonAddToCart.Size = new System.Drawing.Size(133, 23);
+            this.buttonAddToCart.TabIndex = 10;
+            this.buttonAddToCart.Text = "buttonAddToCart";
+            this.buttonAddToCart.UseVisualStyleBackColor = true;
+            // 
+            // labelTotalAmount
+            // 
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Location = new System.Drawing.Point(543, 157);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new System.Drawing.Size(113, 16);
+            this.labelTotalAmount.TabIndex = 11;
+            this.labelTotalAmount.Text = "labelTotalAmount";
             // 
             // WeightsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelTotalAmount);
+            this.Controls.Add(this.buttonAddToCart);
             this.Controls.Add(this.numericUpDownQuantityProduct);
             this.Controls.Add(this.buttonMakeWeight);
             this.Controls.Add(this.buttonPutOutProduct);
@@ -125,8 +147,10 @@
         private System.Windows.Forms.Label labelWeight;
         private System.Windows.Forms.Label labelProduct;
         private System.Windows.Forms.Label labelPrice;
-        private System.Windows.Forms.Button buttonPutOutProduct;
         private System.Windows.Forms.Button buttonMakeWeight;
         private System.Windows.Forms.NumericUpDown numericUpDownQuantityProduct;
+        private System.Windows.Forms.Button buttonPutOutProduct;
+        private System.Windows.Forms.Button buttonAddToCart;
+        private System.Windows.Forms.Label labelTotalAmount;
     }
 }

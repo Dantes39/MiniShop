@@ -7,7 +7,7 @@ namespace MiniShop.Models
     public class CartModel
     {
         private readonly List<CartItem> _items = new List<CartItem>();
-        public decimal price = 0;
+        public float price = 0;
         public IReadOnlyList<CartItem> Items => _items;
 
         public void Add(Product product, int quantity)
@@ -16,7 +16,7 @@ namespace MiniShop.Models
             if ((item != null) && (item.Quantity >= quantity))
                 item.Quantity += quantity;
             else
-                _items.Add(new CartItem(product, quantity));
+                _items.Add(new CartItem(product, quantity, false, 0));
         }
 
         public void Remove(CartItem cartItem, int quantity)
@@ -32,16 +32,17 @@ namespace MiniShop.Models
                 }
         }
 
-        public void UpdateUpTotalPrice(Product product)
+        public void UpdateUpTotalPrice(Product product, int quantity)
         {
             var cartItem = _items.FirstOrDefault(i => i.Product.Id == product.Id);
             if ((cartItem != null) && (cartItem.Quantity > 0))
-                price += cartItem.Product.Price;
+                price += cartItem.Product.Price * quantity;
         }
 
-        public void UpdateDownTotalPrice(CartItem cartItem)
+        public void UpdateDownTotalPrice(CartItem cartItem, int quantity)
         {
-            price -= cartItem.Product.Price;
+            if ((cartItem != null && cartItem.Quantity >= quantity))
+            price -= cartItem.Product.Price * quantity;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace MiniShop.Views
     {
         event Action OnSaveProductClicked;
         string ProductTitle { get; }
-        decimal ProductPrice { get; }
+        float ProductPrice { get; }
         int ProductQuantity { get; }
         DateTime ProductExpiration { get; }
         string ProductPhotoPath { get; }

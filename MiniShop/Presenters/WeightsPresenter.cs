@@ -25,7 +25,15 @@ namespace MiniShop.Presenters
         public void PutInWeight(Product product, int quantity)
         {
             int totalWeight = _productRepository.CountWeights(product, quantity);
-            _view.ShowWeight(totalWeight);
+            float totalPrice;
+            if (totalWeight == -1) _view.ShowError("Количество товаров ограничено!");
+            else
+            {
+                totalPrice = _productRepository.CountWeightsPrice(product, totalWeight);
+                _view.ShowWeight(totalWeight);
+                _view.ShowTotalAmount(_productRepository.totalWeightAmount);
+                _view.ShowTotalPrice(totalPrice);
+            }
 
             /*
              * string flagProductRep = _productRepository.AddToCart(product, quantity);

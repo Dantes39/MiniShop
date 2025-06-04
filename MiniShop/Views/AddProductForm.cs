@@ -10,7 +10,7 @@ namespace MiniShop.Views
         private string selectedImagePath = "";
 
         public string ProductTitle => textBoxName.Text;
-        public decimal ProductPrice => numericUpDownPrice.Value;
+        public float ProductPrice => (float)numericUpDownPrice.Value;
         public int ProductQuantity => (int)numericUpDownQuantity.Value;
         public DateTime ProductExpiration => dateTimePickerExpiration.Value;
         public string ProductPhotoPath => selectedImagePath;

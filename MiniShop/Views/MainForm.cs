@@ -96,7 +96,7 @@ namespace MiniShop.Views
             pictureBoxProductPhoto.ImageLocation = photoPath;
         }
 
-        public void UpdateTotalPrice(decimal total)
+        public void UpdateTotalPrice(float total)
         {
             labelTotalPrice.Text = $"Итого: {total}₽";
         }
