@@ -4,7 +4,17 @@
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
+        public bool IsWeighable { get; set; }
+        public int Weight { get; set; }
 
         public string DisplayInfo => $"{Product.Name} — {Product.Price}₽ × {Quantity}";
+
+        public CartItem(Product product, int quantity, bool isWeighable, int weight) 
+        {
+            Product = product;
+            Quantity = quantity;
+            IsWeighable = isWeighable;
+            Weight = weight;
+        }
     }
 }

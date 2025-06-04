@@ -26,6 +26,8 @@ namespace MiniShop.Presenters
         {
             string phone = view.Phone;
             string password = view.Password;
+            string name = view.Name;
+            string surname = view.Surname;
 
             if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(password))
             {
@@ -45,8 +47,8 @@ namespace MiniShop.Presenters
                 {
                     ID = dataModel.Clients.Any() ? dataModel.Clients.Max(c => c.ID) + 1 : 1,
                     Phone = phone,
-                    Name = "Новый",
-                    Surname = "Клиент",
+                    Name = name,
+                    Surname = surname,
                     Address = "Не указан",
                     Password = password
                 };
@@ -54,7 +56,9 @@ namespace MiniShop.Presenters
                 dataModel.SaveData();
                 view.LoggedInClient = newClient;
                 view.IsAdmin = false;
-                view.ShowSuccess("Регистрация успешна! Вы вошли как клиент.");
+                view.ShowSuccess("Регистрация успешна! Вы вошли как клиент. \n" +
+                    $"Добро пожаловать {newClient.Name} {newClient.Surname}");
+                view.ShowSuccess("За успешную первую регистрацию дарим 100 бонусов!");
                 view.CloseForm(DialogResult.OK);
             }
             else
@@ -83,7 +87,7 @@ namespace MiniShop.Presenters
 
                 view.LoggedInClient = client;
                 view.IsAdmin = false;
-                view.ShowSuccess("Вход выполнен как клиент.");
+                view.ShowSuccess($"С возращением {client.Name} {client.Surname}!");
                 view.CloseForm(DialogResult.OK);
             }
         }

@@ -45,26 +45,35 @@ namespace MiniShop.Presenters
 
         private void AddToCart(Product product)
         {
-            string flagProductRep = _productRepository.AddToCart(product);
-            if (flagProductRep == "Продукт добавлен в корзину!")
+            if (!product.IsWeighable)
             {
-                _cartModel.Add(product);
-                _view.DisplayProducts(_allProducts);
-                _view.DisplayCart(_cartModel.Items.ToList());
+                string flagProductRep = _productRepository.AddToCart(product, 1);
+                if (flagProductRep == "Продукт добавлен в корзину!")
+                {
+                    _cartModel.Add(product, 1);
+                    _view.DisplayProducts(_allProducts);
+                    _view.DisplayCart(_cartModel.Items.ToList());
+                }
+                else _view.ShowError(flagProductRep);
             }
-            else _view.DisplayNofication(flagProductRep);
+            else
+            {
+                _view.ShowError("Данный товар необходимо звесить!");
+                OpenWeightsForm(product);
+
+            }
         }
 
         private void RemoveFromCart(CartItem cartItem)
         {
-            string flagProductRep = _productRepository.RemoveFromCart(cartItem);
+            string flagProductRep = _productRepository.RemoveFromCart(cartItem, 1);
             if (flagProductRep == "Продукт удален из корзины!")
             {
-                _cartModel.Remove(cartItem);
+                _cartModel.Remove(cartItem, 1);
                 _view.DisplayProducts(_allProducts);
                 _view.DisplayCart(_cartModel.Items.ToList());
             }
-            else _view.DisplayNofication(flagProductRep);
+            else _view.ShowError(flagProductRep);
         }
 
         private void OpenAddProduct()
@@ -107,7 +116,7 @@ namespace MiniShop.Presenters
         {
             if (product != null)
             {
-                _cartModel.UpdateUpTotalPrice(product);
+                _cartModel.UpdateUpTotalPrice(product, 1);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }
@@ -116,9 +125,16 @@ namespace MiniShop.Presenters
         {
             if (cartItem != null)
             {
-                _cartModel.UpdateDownTotalPrice(cartItem);
+                _cartModel.UpdateDownTotalPrice(cartItem, 1);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
+        }
+
+        private void OpenWeightsForm(Product product)
+        {
+            var weightsForm = new Views.WeightsForm(product);
+            var weightsPresenter = new WeightsPresenter(weightsForm, _productRepository, _cartModel);
+            weightsForm.ShowDialog();
         }
     }
 }

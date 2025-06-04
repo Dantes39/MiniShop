@@ -19,6 +19,9 @@ namespace MiniShop.Models
 
         public DataModel()
         {
+            string basePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", ".."));
+            _clientsFilePath = Path.Combine(basePath, "Data", "clients.json");
+
             if (File.Exists(_clientsFilePath))
             {
                 var json = File.ReadAllText(_clientsFilePath);

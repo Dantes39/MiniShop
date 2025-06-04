@@ -10,14 +10,19 @@ namespace MiniShop.Models
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly string _filePath = "Data/products.json";
+        private readonly string _productsFilePath;
         private List<Product> _products;
+        private int totalWeight = 0;
+        public int totalWeightAmount = 0;
 
         public ProductRepository()
         {
-            if (File.Exists(_filePath))
+            string basePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", ".."));
+            _productsFilePath = Path.Combine(basePath, "Data", "products.json");
+
+            if (File.Exists(_productsFilePath))
             {
-                var json = File.ReadAllText(_filePath);
+                var json = File.ReadAllText(_productsFilePath);
                 _products = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
             }
             else
@@ -51,17 +56,21 @@ namespace MiniShop.Models
         public void Save()
         {
             var json = JsonSerializer.Serialize(_products, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(_filePath, json);
+            File.WriteAllText(_productsFilePath, json);
         }
 
-        public string AddToCart(Product product)
+        public string AddToCart(Product product, int quantity)
         {
             if (product != null)
             {
-                if (product.Quantity > 0)
+                if (product.Quantity >= quantity)
                 {
-                    product.Quantity -= 1;
+                    product.Quantity -= quantity;
                     return "Продукт добавлен в корзину!";
+                }
+                else if (product.Quantity < quantity)
+                {
+                    return $"В магазине {product.Name} остался в количестве {product.Quantity}!!!";
                 }
                 else if (product.Quantity == 0)
                 {
@@ -71,14 +80,14 @@ namespace MiniShop.Models
             return "Продукт не существует";
         }
 
-        public string RemoveFromCart(CartItem cartItem)
+        public string RemoveFromCart(CartItem cartItem, int quantity)
         {
             var product = _products.FirstOrDefault(i => i.Id == cartItem.Product.Id);
             if (cartItem != null)
             {
-                if (cartItem.Quantity > 0)
+                if (cartItem.Quantity >= quantity)
                 {
-                    product.Quantity += 1;
+                    product.Quantity += quantity;
                     return "Продукт удален из корзины!";
                 }
                 else if (cartItem.Quantity == 0)
@@ -87,6 +96,25 @@ namespace MiniShop.Models
                 }
             }
             return "Продукт не существует";
+        }
+
+        public int CountWeights(Product product, int weightsQuantity)
+        {
+            Random random = new Random();
+            if (totalWeightAmount > product.Quantity - weightsQuantity) return -1;
+            for (int i = 0; i < weightsQuantity; i++)
+            {
+                int realProductWeight = random.Next(product.Weight[0], product.Weight[1]);
+                totalWeight += realProductWeight;
+            }
+            totalWeightAmount += weightsQuantity;
+            return totalWeight;
+        }
+
+        public float CountWeightsPrice(Product product, int totalWeight)
+        {
+            float totalPrice = product.Price * (totalWeight / 1000);
+            return totalPrice;
         }
     }
 }

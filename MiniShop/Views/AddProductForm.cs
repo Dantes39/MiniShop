@@ -10,10 +10,12 @@ namespace MiniShop.Views
         private string selectedImagePath = "";
 
         public string ProductTitle => textBoxName.Text;
-        public decimal ProductPrice => numericUpDownPrice.Value;
+        public float ProductPrice => (float)numericUpDownPrice.Value;
         public int ProductQuantity => (int)numericUpDownQuantity.Value;
         public DateTime ProductExpiration => dateTimePickerExpiration.Value;
         public string ProductPhotoPath => selectedImagePath;
+        public bool IsWeighable => checkBoxWeighable.Checked;
+        public int[] Weight => new int[2] { (int)numericUpDownMinWeight.Value, (int)numericUpDownMaxWeight.Value };
 
         public AddProductForm()
         {
@@ -36,6 +38,24 @@ namespace MiniShop.Views
                 }
             };
             buttonSave.Click += (s, e) => OnSaveProductClicked?.Invoke();
+
+            checkBoxWeighable.Click += (s, e) =>
+            {
+                if (checkBoxWeighable.Checked)
+                {
+                    numericUpDownMinWeight.Visible = true;
+                    numericUpDownMaxWeight.Visible = true;
+                    labelMinWeight.Visible = true;
+                    labelMaxWeight.Visible = true;
+                }
+                else
+                {
+                    numericUpDownMinWeight.Visible = false;
+                    numericUpDownMaxWeight.Visible = false;
+                    labelMinWeight.Visible = false;
+                    labelMaxWeight.Visible = false;
+                }
+            };
         }
 
         public void CloseView()
