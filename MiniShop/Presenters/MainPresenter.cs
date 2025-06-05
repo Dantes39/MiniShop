@@ -4,8 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using MiniShop.Models;
 using MiniShop.Views;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace MiniShop.Presenters
 {
@@ -15,12 +13,14 @@ namespace MiniShop.Presenters
         private readonly ProductRepository _productRepository;
         private readonly CartModel _cartModel;
         private List<Product> _allProducts;
+        private readonly Client loggedInClient;
 
-        public MainPresenter(IMainView view, ProductRepository productRepository, CartModel cartModel)
+        public MainPresenter(IMainView view, ProductRepository productRepository, CartModel cartModel, Client loggedInClient)
         {
             _view = view;
             _productRepository = productRepository;
             _cartModel = cartModel;
+            this.loggedInClient = loggedInClient;
             _view.OnAddToCartClicked += AddToCart;
             _view.OnAddToCartClicked += UpdateUpTotalPrice;
             _view.OnAddProductClicked += OpenAddProduct;
@@ -28,6 +28,7 @@ namespace MiniShop.Presenters
             _view.OnRemoveFromCartClicked += RemoveFromCart;
             _view.OnSearchChanged += SearchProducts;
             _view.OnSortOptionChanged += SortProducts;
+            _view.OnPaymentClicked += HandlePayment;
             LoadProducts();
             UpdateView();
         }
@@ -41,17 +42,18 @@ namespace MiniShop.Presenters
         {
             LoadProducts();
             _view.DisplayProducts(_allProducts);
-            _view.DisplayCart(_cartModel.Items.ToList());;
+            _view.DisplayCart(_cartModel.Items.ToList());
+            _view.UpdateTotalPrice(_cartModel.price);
         }
 
-        private void AddToCart(Product product)
+        private void AddToCart(Product product, int quantity)
         {
             if (!product.IsWeighable)
             {
-                string flagProductRep = _productRepository.AddToCart(product, 1);
+                string flagProductRep = _productRepository.AddToCart(product, quantity);
                 if (flagProductRep == "Продукт добавлен в корзину!")
                 {
-                    _cartModel.Add(product, 1);
+                    _cartModel.Add(product, quantity);
                     _view.DisplayProducts(_allProducts);
                     _view.DisplayCart(_cartModel.Items.ToList());
                 }
@@ -59,18 +61,17 @@ namespace MiniShop.Presenters
             }
             else
             {
-                _view.ShowError("Данный товар необходимо звесить!");
+                _view.ShowError("Данный товар необходимо взвесить!");
                 OpenWeightsForm(product);
-
             }
         }
 
-        private void RemoveFromCart(CartItem cartItem)
+        private void RemoveFromCart(CartItem cartItem, int quantity)
         {
-            string flagProductRep = _productRepository.RemoveFromCart(cartItem, 1);
+            string flagProductRep = _productRepository.RemoveFromCart(cartItem, quantity);
             if (flagProductRep == "Продукт удален из корзины!")
             {
-                _cartModel.Remove(cartItem, 1);
+                _cartModel.Remove(cartItem, quantity);
                 _view.DisplayProducts(_allProducts);
                 _view.DisplayCart(_cartModel.Items.ToList());
             }
@@ -113,20 +114,20 @@ namespace MiniShop.Presenters
             _view.DisplayProducts(sorted);
         }
 
-        private void UpdateUpTotalPrice(Product product)
+        private void UpdateUpTotalPrice(Product product, int quantity)
         {
             if (product != null && !product.IsWeighable)
             {
-                _cartModel.UpdateUpTotalPrice(product, 1);
+                _cartModel.UpdateUpTotalPrice(product, quantity);
                 _view.UpdateTotalPrice(_cartModel.price);
             }
         }
 
-        private void UpdateDownTotalPrice(CartItem cartItem)
+        private void UpdateDownTotalPrice(CartItem cartItem, int quantity)
         {
             if (cartItem != null && !cartItem.IsWeighable)
             {
-                _cartModel.UpdateDownTotalPrice(cartItem, 1);
+                _cartModel.UpdateDownTotalPrice(cartItem, quantity);
             }
             else if (cartItem.IsWeighable)
             {
@@ -149,6 +150,31 @@ namespace MiniShop.Presenters
                 _view.DisplayCart(_cartModel.Items.ToList());
                 _productRepository.CleanWeigths();
                 _view.UpdateTotalPrice(_cartModel.price);
+            }
+        }
+
+        private void HandlePayment()
+        {
+            if (_cartModel.Items.Count == 0)
+            {
+                _view.ShowError("Корзина пуста. Добавьте товары для оплаты.");
+                return;
+            }
+
+            if (loggedInClient == null)
+            {
+                _view.ShowError("Оплата доступна только для клиентов.");
+                return;
+            }
+
+            var paymentForm = new PaymentForm();
+            var paymentPresenter = new PaymentPresenter(paymentForm, _cartModel.price, loggedInClient);
+            if (paymentForm.ShowDialog() == DialogResult.OK)
+            {
+                _cartModel.Clear();
+                _cartModel.price = 0;
+                UpdateView();
+                _view.ShowSuccess("Оплата прошла успешно!");
             }
         }
     }

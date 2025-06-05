@@ -24,8 +24,9 @@ namespace MiniShop.Models
 
         public void Remove(CartItem cartItem, int quantity)
         {
+            MessageBox.Show(cartItem.Quantity.ToString());
             if (cartItem != null)
-                if (cartItem.Quantity >= quantity && !cartItem.IsWeighable)
+                if (cartItem.Quantity > quantity && !cartItem.IsWeighable)
                 {
                     cartItem.Quantity -= quantity;
                 }
@@ -33,6 +34,11 @@ namespace MiniShop.Models
                 {
                     _items.Remove(cartItem);
                 }
+        }
+
+        public void Clear()
+        {
+            _items.Clear();
         }
 
         public void UpdateUpTotalPrice(Product product, int quantity)
@@ -45,7 +51,7 @@ namespace MiniShop.Models
         public void UpdateDownTotalPrice(CartItem cartItem, int quantity)
         {
             if ((cartItem != null && cartItem.Quantity >= quantity))
-            price -= cartItem.Product.Price * quantity;
+                price -= cartItem.Product.Price * quantity;
         }
 
         public void UpdateUpTotalPriceWeighable(float weightPrice)

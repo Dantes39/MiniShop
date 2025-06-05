@@ -42,7 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDownProductQuantity = new System.Windows.Forms.NumericUpDown();
+            this.buttonPayment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProductPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownProductQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxProducts
@@ -76,7 +79,7 @@
             // buttonAddToCart
             // 
             this.buttonAddToCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonAddToCart.Location = new System.Drawing.Point(49, 501);
+            this.buttonAddToCart.Location = new System.Drawing.Point(49, 547);
             this.buttonAddToCart.Name = "buttonAddToCart";
             this.buttonAddToCart.Size = new System.Drawing.Size(205, 69);
             this.buttonAddToCart.TabIndex = 3;
@@ -97,7 +100,7 @@
             // buttonRemoveFromCart
             // 
             this.buttonRemoveFromCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonRemoveFromCart.Location = new System.Drawing.Point(49, 592);
+            this.buttonRemoveFromCart.Location = new System.Drawing.Point(49, 638);
             this.buttonRemoveFromCart.Name = "buttonRemoveFromCart";
             this.buttonRemoveFromCart.Size = new System.Drawing.Size(205, 69);
             this.buttonRemoveFromCart.TabIndex = 5;
@@ -173,12 +176,31 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "МАГАЗИН";
             // 
+            // numericUpDownProductQuantity
+            // 
+            this.numericUpDownProductQuantity.Location = new System.Drawing.Point(49, 501);
+            this.numericUpDownProductQuantity.Name = "numericUpDownProductQuantity";
+            this.numericUpDownProductQuantity.Size = new System.Drawing.Size(205, 22);
+            this.numericUpDownProductQuantity.TabIndex = 15;
+            // 
+            // buttonPayment
+            // 
+            this.buttonPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.buttonPayment.Location = new System.Drawing.Point(916, 501);
+            this.buttonPayment.Name = "buttonPayment";
+            this.buttonPayment.Size = new System.Drawing.Size(205, 69);
+            this.buttonPayment.TabIndex = 16;
+            this.buttonPayment.Text = "Оплатить";
+            this.buttonPayment.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1168, 702);
+            this.ClientSize = new System.Drawing.Size(1168, 814);
+            this.Controls.Add(this.buttonPayment);
+            this.Controls.Add(this.numericUpDownProductQuantity);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -196,6 +218,7 @@
             this.Name = "MainForm";
             this.Text = "MainForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProductPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownProductQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,5 +240,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDownProductQuantity;
+        private System.Windows.Forms.Button buttonPayment;
     }
 }
