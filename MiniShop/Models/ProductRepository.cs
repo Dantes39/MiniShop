@@ -32,6 +32,11 @@ namespace MiniShop.Models
             }
         }
 
+        public ProductRepository(List<Product> products)
+        {
+            _products = products ?? new List<Product>();
+        }
+
         public List<Product> GetAll()
         {
             return _products;

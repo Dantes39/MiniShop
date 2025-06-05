@@ -119,5 +119,86 @@
       "Card": 32,
       "Bonus": 27.980011
     }
+  },
+  {
+    "OrderId": 4,
+    "OrderDate": "2025-06-05T13:56:52.265142+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 2.16998291,
+      "CashAmount": 9570.15039,
+      "CardMoney": 99477.7031
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 1,
+          "Name": "\u042F\u0431\u043B\u043E\u043A\u043E",
+          "Price": 29.9899998,
+          "Quantity": 85,
+          "IsWeighable": false,
+          "Weight": [
+            0,
+            0
+          ],
+          "ExpiryDate": "2025-06-01T00:00:00",
+          "PhotoPath": "C:\\Users\\danil\\source\\repos\\MiniShop\\MiniShop\\Data\\Images\\apple.jpg",
+          "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 85"
+        },
+        "Quantity": 15,
+        "IsWeighable": false,
+        "Weight": 0,
+        "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 15 \u00D7 0"
+      }
+    ],
+    "PaymentMethods": {
+      "Cash": 429.850006,
+      "Bonus": 20
+    }
+  },
+  {
+    "OrderId": 5,
+    "OrderDate": "2025-06-05T13:57:12.8170476+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 2.16998291,
+      "CashAmount": 8963.25,
+      "CardMoney": 99477.7031
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 3,
+          "Name": "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430",
+          "Price": 100,
+          "Quantity": 55,
+          "IsWeighable": true,
+          "Weight": [
+            120,
+            150
+          ],
+          "ExpiryDate": "2025-06-04T17:53:45.5487075+03:00",
+          "PhotoPath": "",
+          "DisplayInfo": "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430 \u2014 100\u20BD \u00D7 55"
+        },
+        "Quantity": 45,
+        "IsWeighable": true,
+        "Weight": 6069,
+        "DisplayInfo": "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430 \u2014 100\u20BD \u00D7 45 \u00D7 6069"
+      }
+    ],
+    "PaymentMethods": {
+      "Cash": 606.900024
+    }
   }
 ]

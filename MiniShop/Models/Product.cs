@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace MiniShop.Models
 {
@@ -27,6 +28,18 @@ namespace MiniShop.Models
             Weight = weight;
             ExpiryDate = expiryDate;
             PhotoPath = photoPath;
+        }
+
+        public Product() 
+        {
+            Id = 0;
+            Name = string.Empty;
+            Price = 0;
+            Quantity = 0;
+            Weight = new int[2] {0, 0};
+            IsWeighable = false;
+            ExpiryDate = DateTime.MinValue;
+            PhotoPath = string.Empty;
         }
     }
 }

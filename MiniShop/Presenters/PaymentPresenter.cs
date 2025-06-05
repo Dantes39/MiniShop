@@ -30,7 +30,7 @@ namespace MiniShop.Presenters
             _cartModel = cartModel;
             _orderRepository = orderRepository;
             _remainingAmount = totalAmount;
-            _maxBonusAmount = totalAmount * 0.5f; // Бонусами можно оплатить максимум 50%
+            _maxBonusAmount = totalAmount * 0.5f;
             _cashStrategy = new CashPaymentStrategy();
             _cardStrategy = new CardPaymentStrategy();
             _bonusStrategy = new BonusPaymentStrategy();
@@ -73,7 +73,7 @@ namespace MiniShop.Presenters
             _view.SetBonusAmount(maxBonus.ToString());
         }
 
-        private void HandlePay()
+        public void HandlePay()
         {
             float cashAmount = 0, cardAmount = 0, bonusAmount = 0;
             bool parseSuccess = true;
@@ -83,12 +83,12 @@ namespace MiniShop.Presenters
                 _view.ShowError("Введите корректную сумму для наличных.");
                 parseSuccess = false;
             }
-            if (!float.TryParse(_view.GetCardAmount(), out cardAmount) || cardAmount < 0)
+            if (parseSuccess && (!float.TryParse(_view.GetCardAmount(), out cardAmount) || cardAmount < 0))
             {
                 _view.ShowError("Введите корректную сумму для карты.");
                 parseSuccess = false;
             }
-            if (!float.TryParse(_view.GetBonusAmount(), out bonusAmount) || bonusAmount < 0)
+            if (parseSuccess && (!float.TryParse(_view.GetBonusAmount(), out bonusAmount) || bonusAmount < 0))
             {
                 _view.ShowError("Введите корректную сумму для бонусов.");
                 parseSuccess = false;
@@ -110,7 +110,6 @@ namespace MiniShop.Presenters
                 return;
             }
 
-            // Приоритет: сначала наличные, потом карта
             float adjustedCash = cashAmount;
             float adjustedCard = cardAmount;
             if (totalInput > _remainingAmount)
@@ -137,7 +136,6 @@ namespace MiniShop.Presenters
                 return;
             }
 
-            // Сохраняем суммы оплаты
             _paidCash += adjustedCash;
             _paidCard += adjustedCard;
             _paidBonus += bonusAmount;
@@ -148,7 +146,6 @@ namespace MiniShop.Presenters
 
             if (_remainingAmount <= 0)
             {
-                // Создаем заказ
                 var order = new Order
                 {
                     Client = _client,
@@ -159,7 +156,6 @@ namespace MiniShop.Presenters
                 if (_paidCard > 0) order.PaymentMethods.Add("Card", _paidCard);
                 if (_paidBonus > 0) order.PaymentMethods.Add("Bonus", _paidBonus);
 
-                // Сохраняем заказ
                 _orderRepository.SaveOrder(order);
 
                 _view.ShowSuccess("Оплата прошла успешно!");

@@ -16,7 +16,6 @@ namespace MiniShop.Models
             string basePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", ".."));
             _filePath = Path.Combine(basePath, "Data", "orders.json");
 
-            // Убедимся, что папка Data существует
             Directory.CreateDirectory(Path.GetDirectoryName(_filePath));
         }
 
@@ -26,7 +25,6 @@ namespace MiniShop.Models
             {
                 int maxOrderId = 0;
 
-                // Если файл существует, определяем максимальный OrderId
                 if (File.Exists(_filePath))
                 {
                     string json = File.ReadAllText(_filePath);
@@ -34,11 +32,9 @@ namespace MiniShop.Models
                     maxOrderId = orders.Count > 0 ? orders.Max(o => o.OrderId) : 0;
                 }
 
-                // Присваиваем новый OrderId и дату
                 order.OrderId = maxOrderId + 1;
                 order.OrderDate = DateTime.Now;
 
-                // Читаем существующие заказы или создаем новый список
                 List<Order> ordersToSave;
                 if (File.Exists(_filePath))
                 {
@@ -52,7 +48,6 @@ namespace MiniShop.Models
 
                 ordersToSave.Add(order);
 
-                // Сохраняем обновленный список заказов
                 string newJson = JsonSerializer.Serialize(ordersToSave, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(_filePath, newJson);
             }

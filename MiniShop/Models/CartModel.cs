@@ -7,8 +7,14 @@ namespace MiniShop.Models
     public class CartModel
     {
         private readonly List<CartItem> _items = new List<CartItem>();
-        public float price = 0;
-        public IReadOnlyList<CartItem> Items => _items;
+        public float price { get; set; }
+        public List<CartItem> Items;
+
+        public CartModel()
+        {
+            price = 0;
+            Items = _items;
+        }
 
         public void Add(Product product, int quantity, bool isWeighable = false, int weight = 0)
         {

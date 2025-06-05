@@ -19,6 +19,7 @@ namespace MiniShop.Views
 
         public LoginForm(DataModel dataModel)
         {
+            this.Name = "LoginForm";
             this.dataModel = dataModel;
             InitializeComponent();
             presenter = new LoginPresenter(this, dataModel);
@@ -30,8 +31,8 @@ namespace MiniShop.Views
         public string Password => txtPassword.Text.Trim();
         public bool IsRegisterChecked => chkRegister.Checked;
         
-        public string Name => txtName.Text.Trim();
-        public string Surname => txtSurname.Text.Trim();
+        public string NameClient => txtName.Text.Trim();
+        public string SurnameClient => txtSurname.Text.Trim();
 
 
         public bool IsAdmin { get; set; }
@@ -45,11 +46,15 @@ namespace MiniShop.Views
                 {
                     txtName.Visible = true;
                     txtSurname.Visible = true;
+                    labelName.Visible = true;
+                    labelSurname.Visible = true;
                 }
                 else
                 {
                     txtName.Visible = false;
                     txtSurname.Visible = false;
+                    labelName.Visible = false;
+                    labelSurname.Visible = false;
                 }
             };
         }

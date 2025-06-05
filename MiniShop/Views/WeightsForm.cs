@@ -24,6 +24,7 @@ namespace MiniShop.Views
         {
             this.SelectedProduct = product;
             InitializeComponent();
+            ShowProduct(this.SelectedProduct);
             WireUpEvents();
         }
 
@@ -41,6 +42,12 @@ namespace MiniShop.Views
         public void ShowTotalPrice(float totalPrice) 
         {
             labelPrice.Text = totalPrice.ToString();
+        }
+
+        public void ShowProduct(Product product)
+        {
+            labelProduct.Text = product.Name;
+            pictureBoxProduct.ImageLocation = product.PhotoPath;
         }
 
         public void WireUpEvents()
