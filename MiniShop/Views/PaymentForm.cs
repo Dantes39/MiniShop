@@ -54,6 +54,21 @@ namespace MiniShop.Views
             return textBoxBonusAmount.Text;
         }
 
+        public void SetCashAmount(string amount)
+        {
+            textBoxCashAmount.Text = amount;
+        }
+
+        public void SetCardAmount(string amount)
+        {
+            textBoxCardAmount.Text = amount;
+        }
+
+        public void SetBonusAmount(string amount)
+        {
+            textBoxBonusAmount.Text = amount;
+        }
+
         public void ShowError(string message)
         {
             MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

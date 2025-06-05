@@ -1,0 +1,123 @@
+[
+  {
+    "OrderId": 1,
+    "OrderDate": "2025-06-05T03:44:00.3262817+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 50.1499939,
+      "CashAmount": 400,
+      "CardMoney": 900.299988
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 1,
+          "Name": "\u042F\u0431\u043B\u043E\u043A\u043E",
+          "Price": 29.9899998,
+          "Quantity": 70,
+          "IsWeighable": false,
+          "Weight": [
+            0,
+            0
+          ],
+          "ExpiryDate": "2025-06-01T00:00:00",
+          "PhotoPath": "C:\\Users\\danil\\source\\repos\\MiniShop\\MiniShop\\Data\\Images\\apple.jpg",
+          "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 70"
+        },
+        "Quantity": 30,
+        "IsWeighable": false,
+        "Weight": 0,
+        "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 30 \u00D7 0"
+      }
+    ],
+    "PaymentMethods": {
+      "Card": 899.700012
+    }
+  },
+  {
+    "OrderId": 2,
+    "OrderDate": "2025-06-05T03:55:16.9310445+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 50.1499939,
+      "CashAmount": 9510.7002,
+      "CardMoney": 99509.7031
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 2,
+          "Name": "\u041C\u043E\u043B\u043E\u043A\u043E",
+          "Price": 69.9000015,
+          "Quantity": 43,
+          "IsWeighable": false,
+          "Weight": [
+            0,
+            0
+          ],
+          "ExpiryDate": "2024-04-25T00:00:00",
+          "PhotoPath": "C:\\Users\\danil\\source\\repos\\MiniShop\\MiniShop\\Data\\Images\\milk.png",
+          "DisplayInfo": "\u041C\u043E\u043B\u043E\u043A\u043E \u2014 69,9\u20BD \u00D7 43"
+        },
+        "Quantity": 7,
+        "IsWeighable": false,
+        "Weight": 0,
+        "DisplayInfo": "\u041C\u043E\u043B\u043E\u043A\u043E \u2014 69,9\u20BD \u00D7 7 \u00D7 0"
+      }
+    ],
+    "PaymentMethods": {
+      "Cash": 489.300018
+    }
+  },
+  {
+    "OrderId": 3,
+    "OrderDate": "2025-06-05T03:59:50.3626931+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 22.1699829,
+      "CashAmount": 10000,
+      "CardMoney": 99477.7031
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 1,
+          "Name": "\u042F\u0431\u043B\u043E\u043A\u043E",
+          "Price": 29.9899998,
+          "Quantity": 98,
+          "IsWeighable": false,
+          "Weight": [
+            0,
+            0
+          ],
+          "ExpiryDate": "2025-06-01T00:00:00",
+          "PhotoPath": "C:\\Users\\danil\\source\\repos\\MiniShop\\MiniShop\\Data\\Images\\apple.jpg",
+          "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 98"
+        },
+        "Quantity": 2,
+        "IsWeighable": false,
+        "Weight": 0,
+        "DisplayInfo": "\u042F\u0431\u043B\u043E\u043A\u043E \u2014 29,99\u20BD \u00D7 2 \u00D7 0"
+      }
+    ],
+    "PaymentMethods": {
+      "Card": 32,
+      "Bonus": 27.980011
+    }
+  }
+]

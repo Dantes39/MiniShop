@@ -15,6 +15,9 @@ namespace MiniShop.Views
         string GetCashAmount();
         string GetCardAmount();
         string GetBonusAmount();
+        void SetCashAmount(string amount);
+        void SetCardAmount(string amount);
+        void SetBonusAmount(string amount);
         void ShowError(string message);
         void ShowSuccess(string message);
         void CloseForm(DialogResult result);

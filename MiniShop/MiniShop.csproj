@@ -91,6 +91,8 @@
     <Compile Include="Models\IClient.cs" />
     <Compile Include="Models\IPaymentStrategy.cs" />
     <Compile Include="Models\IProductRepository.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderRepository.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Presenters\AddProductPresenter.cs" />
