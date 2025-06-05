@@ -12,6 +12,7 @@ namespace MiniShop.Presenters
         private readonly IMainView _view;
         private readonly ProductRepository _productRepository;
         private readonly CartModel _cartModel;
+        private readonly OrderRepository _orderRepository;
         private List<Product> _allProducts;
         private readonly Client loggedInClient;
 
@@ -20,6 +21,7 @@ namespace MiniShop.Presenters
             _view = view;
             _productRepository = productRepository;
             _cartModel = cartModel;
+            _orderRepository = new OrderRepository();
             this.loggedInClient = loggedInClient;
             _view.OnAddToCartClicked += AddToCart;
             _view.OnAddToCartClicked += UpdateUpTotalPrice;
@@ -168,7 +170,7 @@ namespace MiniShop.Presenters
             }
 
             var paymentForm = new PaymentForm();
-            var paymentPresenter = new PaymentPresenter(paymentForm, _cartModel.price, loggedInClient);
+            var paymentPresenter = new PaymentPresenter(paymentForm, _cartModel.price, loggedInClient, _cartModel, _orderRepository, _productRepository);
             if (paymentForm.ShowDialog() == DialogResult.OK)
             {
                 _cartModel.Clear();

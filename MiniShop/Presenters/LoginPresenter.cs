@@ -26,8 +26,8 @@ namespace MiniShop.Presenters
         {
             string phone = view.Phone;
             string password = view.Password;
-            string name = view.Name;
-            string surname = view.Surname;
+            string name = view.NameClient;
+            string surname = view.SurnameClient;
 
             if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(password))
             {

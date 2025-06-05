@@ -62,16 +62,36 @@
             // numericUpDownPrice
             // 
             this.numericUpDownPrice.Location = new System.Drawing.Point(15, 77);
+            this.numericUpDownPrice.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownPrice.Name = "numericUpDownPrice";
             this.numericUpDownPrice.Size = new System.Drawing.Size(206, 22);
             this.numericUpDownPrice.TabIndex = 1;
+            this.numericUpDownPrice.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericUpDownQuantity
             // 
             this.numericUpDownQuantity.Location = new System.Drawing.Point(15, 132);
+            this.numericUpDownQuantity.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownQuantity.Name = "numericUpDownQuantity";
             this.numericUpDownQuantity.Size = new System.Drawing.Size(206, 22);
             this.numericUpDownQuantity.TabIndex = 2;
+            this.numericUpDownQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // dateTimePickerExpiration
             // 
@@ -167,17 +187,37 @@
             // numericUpDownMinWeight
             // 
             this.numericUpDownMinWeight.Location = new System.Drawing.Point(253, 241);
+            this.numericUpDownMinWeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownMinWeight.Name = "numericUpDownMinWeight";
             this.numericUpDownMinWeight.Size = new System.Drawing.Size(122, 22);
             this.numericUpDownMinWeight.TabIndex = 14;
+            this.numericUpDownMinWeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownMinWeight.Visible = false;
             // 
             // numericUpDownMaxWeight
             // 
             this.numericUpDownMaxWeight.Location = new System.Drawing.Point(426, 241);
+            this.numericUpDownMaxWeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownMaxWeight.Name = "numericUpDownMaxWeight";
             this.numericUpDownMaxWeight.Size = new System.Drawing.Size(123, 22);
             this.numericUpDownMaxWeight.TabIndex = 15;
+            this.numericUpDownMaxWeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownMaxWeight.Visible = false;
             // 
             // labelMinWeight

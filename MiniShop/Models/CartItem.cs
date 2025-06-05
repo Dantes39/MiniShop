@@ -9,6 +9,10 @@
 
         public string DisplayInfo => $"{Product.Name} — {Product.Price}₽ × {Quantity} × {Weight}";
 
+        public CartItem()
+        {
+            // Конструктор по умолчанию
+        }
         public CartItem(Product product, int quantity) 
         {
             Product = product;

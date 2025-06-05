@@ -12,8 +12,8 @@ namespace MiniShop.Views
     {
         string Phone { get; }
         string Password { get; }
-        string Name { get; }
-        string Surname { get; }
+        string NameClient { get; }
+        string SurnameClient { get; }
         bool IsRegisterChecked { get; }
         void ShowError(string message);
         void ShowSuccess(string message);
