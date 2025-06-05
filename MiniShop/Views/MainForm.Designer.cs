@@ -180,9 +180,19 @@
             // numericUpDownProductQuantity
             // 
             this.numericUpDownProductQuantity.Location = new System.Drawing.Point(49, 477);
+            this.numericUpDownProductQuantity.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownProductQuantity.Name = "numericUpDownProductQuantity";
             this.numericUpDownProductQuantity.Size = new System.Drawing.Size(205, 22);
             this.numericUpDownProductQuantity.TabIndex = 15;
+            this.numericUpDownProductQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // buttonPayment
             // 

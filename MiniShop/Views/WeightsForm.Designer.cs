@@ -100,6 +100,11 @@
             // numericUpDownQuantityProduct
             // 
             this.numericUpDownQuantityProduct.Location = new System.Drawing.Point(305, 277);
+            this.numericUpDownQuantityProduct.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.numericUpDownQuantityProduct.Name = "numericUpDownQuantityProduct";
             this.numericUpDownQuantityProduct.Size = new System.Drawing.Size(190, 22);
             this.numericUpDownQuantityProduct.TabIndex = 9;

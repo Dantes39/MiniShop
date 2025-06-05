@@ -200,5 +200,45 @@
     "PaymentMethods": {
       "Cash": 606.900024
     }
+  },
+  {
+    "OrderId": 6,
+    "OrderDate": "2025-06-05T15:40:41.3607101+03:00",
+    "Client": {
+      "ID": 4,
+      "Name": "Danil",
+      "Surname": "Bychkov",
+      "Phone": "1234",
+      "Address": "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D",
+      "Password": "1234",
+      "BonusScore": 2.16998291,
+      "CashAmount": 8726.25,
+      "CardMoney": 99477.7031
+    },
+    "Items": [
+      {
+        "Product": {
+          "Id": 9,
+          "Name": "\u0413\u0440\u0435\u0447\u043A\u0430",
+          "Price": 79,
+          "Quantity": 197,
+          "IsWeighable": false,
+          "Weight": [
+            1,
+            1
+          ],
+          "ExpiryDate": "2029-07-12T15:33:23",
+          "PhotoPath": "C:\\Users\\danil\\source\\repos\\MiniShop\\MiniShop\\Data\\Images\\grechka.jpg",
+          "DisplayInfo": "\u0413\u0440\u0435\u0447\u043A\u0430 \u2014 79\u20BD \u00D7 197"
+        },
+        "Quantity": 3,
+        "IsWeighable": false,
+        "Weight": 0,
+        "DisplayInfo": "\u0413\u0440\u0435\u0447\u043A\u0430 \u2014 79\u20BD \u00D7 3 \u00D7 0"
+      }
+    ],
+    "PaymentMethods": {
+      "Cash": 237
+    }
   }
 ]

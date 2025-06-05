@@ -170,7 +170,7 @@ namespace MiniShop.Presenters
             }
 
             var paymentForm = new PaymentForm();
-            var paymentPresenter = new PaymentPresenter(paymentForm, _cartModel.price, loggedInClient, _cartModel, _orderRepository);
+            var paymentPresenter = new PaymentPresenter(paymentForm, _cartModel.price, loggedInClient, _cartModel, _orderRepository, _productRepository);
             if (paymentForm.ShowDialog() == DialogResult.OK)
             {
                 _cartModel.Clear();

@@ -13,6 +13,7 @@ namespace MiniShop.Presenters
         private readonly float _totalAmount;
         private readonly CartModel _cartModel;
         private readonly OrderRepository _orderRepository;
+        private readonly ProductRepository _productRepository;
         private float _remainingAmount;
         private readonly float _maxBonusAmount;
         private readonly IPaymentStrategy _cashStrategy;
@@ -22,13 +23,14 @@ namespace MiniShop.Presenters
         private float _paidCard;
         private float _paidBonus;
 
-        public PaymentPresenter(IPaymentView view, float totalAmount, Client client, CartModel cartModel, OrderRepository orderRepository)
+        public PaymentPresenter(IPaymentView view, float totalAmount, Client client, CartModel cartModel, OrderRepository orderRepository, ProductRepository productRepository)
         {
             _view = view;
             _client = client;
             _totalAmount = totalAmount;
             _cartModel = cartModel;
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
             _remainingAmount = totalAmount;
             _maxBonusAmount = totalAmount * 0.5f;
             _cashStrategy = new CashPaymentStrategy();
@@ -160,6 +162,7 @@ namespace MiniShop.Presenters
 
                 _view.ShowSuccess("Оплата прошла успешно!");
                 _view.CloseForm(DialogResult.OK);
+                _productRepository.Save();
             }
         }
 
