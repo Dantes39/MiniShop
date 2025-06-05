@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using MiniShop.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
-
 
 namespace MiniShop.Views
 {
@@ -13,18 +11,19 @@ namespace MiniShop.Views
         private bool isAdmin;
         private Client loggedInClient;
         private DataModel dataModel;
-        public event Action<Product> OnAddToCartClicked;
+        private int productQuantity => (int)numericUpDownProductQuantity.Value;
+        public event Action<Product, int> OnAddToCartClicked;
         public event Action OnAddProductClicked;
-        public event Action<CartItem> OnRemoveFromCartClicked;
+        public event Action<CartItem, int> OnRemoveFromCartClicked;
         public event Action<string> OnSearchChanged;
         public event Action<string> OnSortOptionChanged;
+        public event Action OnPaymentClicked;
 
         public MainForm(bool isAdmin, Client loggedInClient, DataModel dataModel)
         {
             this.isAdmin = isAdmin;
             this.loggedInClient = loggedInClient;
             this.dataModel = dataModel;
-
 
             InitializeComponent();
 
@@ -58,7 +57,7 @@ namespace MiniShop.Views
             {
                 if (listBoxProducts.SelectedItem is Product product)
                 {
-                    OnAddToCartClicked?.Invoke(product);
+                    OnAddToCartClicked?.Invoke(product, this.productQuantity);
                 }
             };
             buttonAddProduct.Click += (s, e) => OnAddProductClicked?.Invoke();
@@ -66,7 +65,7 @@ namespace MiniShop.Views
             {
                 if (listBoxCart.SelectedItem is CartItem item)
                 {
-                    OnRemoveFromCartClicked?.Invoke(item);
+                    OnRemoveFromCartClicked?.Invoke(item, this.productQuantity);
                 }
             };
             textBoxSearch.TextChanged += (s, e) => OnSearchChanged?.Invoke(textBoxSearch.Text);
@@ -75,6 +74,7 @@ namespace MiniShop.Views
                 if (comboBoxSort.SelectedItem != null)
                     OnSortOptionChanged?.Invoke(comboBoxSort.SelectedItem.ToString());
             };
+            buttonPayment.Click += (s, e) => OnPaymentClicked?.Invoke();
         }
 
         public void DisplayProducts(List<Product> products)
@@ -115,6 +115,11 @@ namespace MiniShop.Views
         {
             base.OnFormClosing(e);
             dataModel.SaveData();
+        }
+
+        public void ProcessPayment()
+        {
+
         }
     }
 }

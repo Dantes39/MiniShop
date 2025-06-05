@@ -80,17 +80,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BonusPaymentStrategy.cs" />
+    <Compile Include="Models\CardPaymentStrategy.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartItemWeighable.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CashPaymentStrategy.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\IClient.cs" />
+    <Compile Include="Models\IPaymentStrategy.cs" />
     <Compile Include="Models\IProductRepository.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Presenters\AddProductPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Presenters\PaymentPresenter.cs" />
     <Compile Include="Presenters\WeightsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +110,7 @@
     <Compile Include="Views\IAddProductView.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IMainView.cs" />
+    <Compile Include="Views\IPaymentView.cs" />
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +122,12 @@
     </Compile>
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\WeightsForm.cs">
       <SubType>Form</SubType>
@@ -145,6 +158,9 @@
     <Content Include="Data\products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Views\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\WeightsForm.resx">
       <DependentUpon>WeightsForm.cs</DependentUpon>
     </EmbeddedResource>

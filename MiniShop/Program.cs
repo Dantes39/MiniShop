@@ -23,7 +23,7 @@ namespace MiniShop
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 var mainForm = new MainForm(loginForm.IsAdmin, loginForm.LoggedInClient, dataModel);
-                var presenter = new MainPresenter(mainForm, repository, cartModel);
+                var presenter = new MainPresenter(mainForm, repository, cartModel, loginForm.LoggedInClient);
                 Application.Run(mainForm);
             }
            

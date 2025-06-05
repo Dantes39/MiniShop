@@ -94,16 +94,16 @@
             // 
             // buttonPutOutProduct
             // 
-            this.buttonPutOutProduct.Location = new System.Drawing.Point(543, 241);
+            this.buttonPutOutProduct.Location = new System.Drawing.Point(499, 308);
             this.buttonPutOutProduct.Name = "buttonPutOutProduct";
-            this.buttonPutOutProduct.Size = new System.Drawing.Size(75, 23);
+            this.buttonPutOutProduct.Size = new System.Drawing.Size(183, 23);
             this.buttonPutOutProduct.TabIndex = 7;
             this.buttonPutOutProduct.Text = "buttonPutOutProduct";
             this.buttonPutOutProduct.UseVisualStyleBackColor = true;
             // 
             // buttonAddToCart
             // 
-            this.buttonAddToCart.Location = new System.Drawing.Point(499, 365);
+            this.buttonAddToCart.Location = new System.Drawing.Point(499, 382);
             this.buttonAddToCart.Name = "buttonAddToCart";
             this.buttonAddToCart.Size = new System.Drawing.Size(133, 23);
             this.buttonAddToCart.TabIndex = 10;

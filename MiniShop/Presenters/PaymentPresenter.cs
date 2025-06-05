@@ -1,0 +1,146 @@
+﻿using System;
+using System.Windows.Forms;
+using MiniShop.Models;
+using MiniShop.Views;
+
+namespace MiniShop.Presenters
+{
+    public class PaymentPresenter
+    {
+        private readonly IPaymentView _view;
+        private readonly Client _client;
+        private readonly float _totalAmount;
+        private float _remainingAmount;
+        private readonly float _maxBonusAmount;
+        private readonly IPaymentStrategy _cashStrategy;
+        private readonly IPaymentStrategy _cardStrategy;
+        private readonly IPaymentStrategy _bonusStrategy;
+
+        public PaymentPresenter(IPaymentView view, float totalAmount, Client client)
+        {
+            _view = view;
+            _client = client;
+            _totalAmount = totalAmount;
+            _remainingAmount = totalAmount;
+            _maxBonusAmount = totalAmount * 0.5f; // Бонусами можно оплатить максимум 50%
+            _cashStrategy = new CashPaymentStrategy();
+            _cardStrategy = new CardPaymentStrategy();
+            _bonusStrategy = new BonusPaymentStrategy();
+
+            _view.OnPayClicked += HandlePay;
+            _view.OnCancelClicked += HandleCancel;
+            _view.OnCashMaxClicked += HandleCashMax;
+            _view.OnCardMaxClicked += HandleCardMax;
+            _view.OnBonusMaxClicked += HandleBonusMax;
+
+            InitializeView();
+        }
+
+        private void InitializeView()
+        {
+            _view.SetTotalAmount(_totalAmount);
+            _view.SetBalances(_client.CashAmount, _client.CardMoney, _client.BonusScore);
+            _view.SetRemainingAmount(_remainingAmount);
+        }
+
+        private void HandleCashMax()
+        {
+            float maxCash = Math.Min(_client.CashAmount, _remainingAmount);
+            _view.GetCashAmount(); // Просто для совместимости, устанавливаем через view если нужно
+            _view.ShowError(maxCash.ToString()); // Временный способ отобразить, замените на SetCashAmount если добавите
+        }
+
+        private void HandleCardMax()
+        {
+            float maxCard = Math.Min(_client.CardMoney, _remainingAmount);
+            _view.ShowError(maxCard.ToString()); // Временный способ отобразить, замените на SetCardAmount если добавите
+        }
+
+        private void HandleBonusMax()
+        {
+            float maxBonus = Math.Min(_client.BonusScore, _maxBonusAmount);
+            maxBonus = Math.Min(maxBonus, _remainingAmount);
+            _view.ShowError(maxBonus.ToString()); // Временный способ отобразить, замените на SetBonusAmount если добавите
+        }
+
+        private void HandlePay()
+        {
+            float cashAmount = 0, cardAmount = 0, bonusAmount = 0;
+            bool parseSuccess = true;
+
+            if (!float.TryParse(_view.GetCashAmount(), out cashAmount) || cashAmount < 0)
+            {
+                _view.ShowError("Введите корректную сумму для наличных.");
+                parseSuccess = false;
+            }
+            if (!float.TryParse(_view.GetCardAmount(), out cardAmount) || cardAmount < 0)
+            {
+                _view.ShowError("Введите корректную сумму для карты.");
+                parseSuccess = false;
+            }
+            if (!float.TryParse(_view.GetBonusAmount(), out bonusAmount) || bonusAmount < 0)
+            {
+                _view.ShowError("Введите корректную сумму для бонусов.");
+                parseSuccess = false;
+            }
+
+            if (!parseSuccess) return;
+
+            float totalInput = cashAmount + cardAmount + bonusAmount;
+
+            if (totalInput == 0)
+            {
+                _view.ShowError("Укажите сумму для оплаты хотя бы одним способом.");
+                return;
+            }
+
+            if (bonusAmount > _maxBonusAmount)
+            {
+                _view.ShowError($"Бонусами можно оплатить не более 50% от суммы ({_maxBonusAmount}₽).");
+                return;
+            }
+
+            // Приоритет: сначала наличные, потом карта
+            float adjustedCash = cashAmount;
+            float adjustedCard = cardAmount;
+            if (totalInput > _remainingAmount)
+            {
+                adjustedCash = Math.Min(cashAmount, _remainingAmount);
+                float remainingAfterCash = _remainingAmount - adjustedCash;
+                adjustedCard = Math.Min(cardAmount, remainingAfterCash);
+                bonusAmount = Math.Min(bonusAmount, remainingAfterCash - adjustedCard);
+            }
+
+            if (adjustedCash > 0 && !_cashStrategy.Pay(adjustedCash, _client))
+            {
+                _view.ShowError("Недостаточно наличных для оплаты.");
+                return;
+            }
+            if (adjustedCard > 0 && !_cardStrategy.Pay(adjustedCard, _client))
+            {
+                _view.ShowError("Недостаточно средств на карте для оплаты.");
+                return;
+            }
+            if (bonusAmount > 0 && !_bonusStrategy.Pay(bonusAmount, _client))
+            {
+                _view.ShowError("Недостаточно бонусов для оплаты.");
+                return;
+            }
+
+            _remainingAmount -= (adjustedCash + adjustedCard + bonusAmount);
+            _view.SetRemainingAmount(_remainingAmount);
+            _view.SetBalances(_client.CashAmount, _client.CardMoney, _client.BonusScore);
+
+            if (_remainingAmount <= 0)
+            {
+                _view.ShowSuccess("Оплата прошла успешно!");
+                _view.CloseForm(DialogResult.OK);
+            }
+        }
+
+        private void HandleCancel()
+        {
+            _view.CloseForm(DialogResult.Cancel);
+        }
+    }
+}
